@@ -44,6 +44,7 @@ public class Registration extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
         String status = "";
+        int reating = 0;
 
         if (statusCheckBox.isChecked()) {
             status = "Организатор";
@@ -66,6 +67,7 @@ public class Registration extends AppCompatActivity {
             values.put(DatabaseHelper_Users.COLUMN_PASSWORD, password);
             values.put(DatabaseHelper_Users.COLUMN_POL, pol);
             values.put(DatabaseHelper_Users.COLUMN_STATUS, status);
+            values.put(DatabaseHelper_Users.COLUMN_REATING, reating);
 
             // Проверяем наличие пользователя с указанным email
             boolean exists = dbHelper.checkUser(email);
@@ -77,7 +79,7 @@ public class Registration extends AppCompatActivity {
             }
 
             // Добавляем нового пользователя в базу данных
-            boolean success = dbHelper.insertData(email, password, fio, status, pol);
+            boolean success = dbHelper.insertData(email, password, fio, status, pol, reating);
             if (success) {
                 Toast.makeText(this, "Пользователь зарегистрирован", Toast.LENGTH_SHORT).show();
                 // Переходим на экран личного кабинета

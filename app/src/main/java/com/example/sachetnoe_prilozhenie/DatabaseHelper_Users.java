@@ -40,7 +40,7 @@ public class DatabaseHelper_Users extends SQLiteOpenHelper {
                 COLUMN_STATUS + " TEXT, " +
                 COLUMN_EMAIL + " TEXT ," +
                 COLUMN_POL + " TEXT, " +
-                COLUMN_REATING + " INTEGER"
+                COLUMN_REATING + " INT"
                 + ")");
 
         db.execSQL("CREATE TABLE " + TABLE_M + " (" +
@@ -78,7 +78,7 @@ public class DatabaseHelper_Users extends SQLiteOpenHelper {
         return exists;
     }
 
-    public boolean insertData(String email, String password, String fio, String status, String pol) {
+    public boolean insertData(String email, String password, String fio, String status, String pol, int reating) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_EMAIL, email);
@@ -86,6 +86,7 @@ public class DatabaseHelper_Users extends SQLiteOpenHelper {
         contentValues.put(COLUMN_FIO, fio);
         contentValues.put(COLUMN_STATUS, status);
         contentValues.put(COLUMN_POL, pol);
+        contentValues.put(COLUMN_REATING, reating);
         long result = db.insert(TABLE_U, null, contentValues);
         return result != -1;
     }
