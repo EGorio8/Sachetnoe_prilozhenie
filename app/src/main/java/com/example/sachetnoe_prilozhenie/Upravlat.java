@@ -28,7 +28,7 @@ public class Upravlat extends AppCompatActivity {
         layout = findViewById(R.id.leaner);
 
         // Создание нового объекта DatabaseHelper
-        DatabaseHelper_Users dbHelper = new DatabaseHelper_Users(this);
+        DatabaseHelper_Users_Merop dbHelper = new DatabaseHelper_Users_Merop(this);
 
         // Получение курсора
         Cursor cursor = dbHelper.getData();
@@ -39,11 +39,11 @@ public class Upravlat extends AppCompatActivity {
 
         while (cursor.moveToNext()) {
             // Получение данных из курсора
-            @SuppressLint("Range") int _id_mer = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_ID_MER));
-            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_NAME));
-            @SuppressLint("Range") String vrema = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_VREMA));
-            @SuppressLint("Range") String fio = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_ORG));
-            @SuppressLint("Range") String opisanie = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_OPISANIE));
+            @SuppressLint("Range") int _id_mer = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID_MER));
+            @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME));
+            @SuppressLint("Range") String vrema = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_VREMA));
+            @SuppressLint("Range") String fio = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ORG));
+            @SuppressLint("Range") String opisanie = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_OPISANIE));
 
             // Создание нового TextView
             TextView textView = new TextView(this);

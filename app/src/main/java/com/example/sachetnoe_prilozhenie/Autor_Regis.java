@@ -13,14 +13,14 @@ import android.widget.Toast;
 public class Autor_Regis extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
-    private DatabaseHelper_Users dbHelper;
+    private DatabaseHelper_Users_Merop dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autor_regis);
 
-        dbHelper = new DatabaseHelper_Users(this); // создание экземпляра класса DatabaseHelper
+        dbHelper = new DatabaseHelper_Users_Merop(this); // создание экземпляра класса DatabaseHelper
 
         emailEditText = findViewById(R.id.fioText);
         passwordEditText = findViewById(R.id.password);
@@ -36,11 +36,11 @@ public class Autor_Regis extends AppCompatActivity {
 
             SQLiteDatabase db = dbHelper.getReadableDatabase(); // открытие базы данных в режиме только чтения
 
-            String[] columns = {DatabaseHelper_Users.COLUMN_ID}; // массив столбцов для выборки
-            String selection = DatabaseHelper_Users.COLUMN_EMAIL + "=? AND " + DatabaseHelper_Users.COLUMN_PASSWORD + "=?"; // условие выборки
+            String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID}; // массив столбцов для выборки
+            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=? AND " + DatabaseHelper_Users_Merop.COLUMN_PASSWORD + "=?"; // условие выборки
             String[] selectionArgs = {email, password}; // аргументы условия выборки
 
-            Cursor cursor = db.query(DatabaseHelper_Users.TABLE_U, columns, selection, selectionArgs, null, null, null); // выполнение выборки
+            Cursor cursor = db.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null); // выполнение выборки
 
             if(cursor != null && cursor.getCount() > 0) { // проверка наличия найденных записей в таблице пользователей
                 Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show();

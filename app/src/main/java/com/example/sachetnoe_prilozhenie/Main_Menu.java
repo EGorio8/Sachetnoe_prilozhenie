@@ -19,7 +19,7 @@ public class Main_Menu extends AppCompatActivity {
     TextView textEmail;
 
     ListView userList;
-    DatabaseHelper_Users databaseHelper;
+    DatabaseHelper_Users_Merop databaseHelper;
     SQLiteDatabase db;
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
@@ -49,7 +49,7 @@ public class Main_Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        databaseHelper = new DatabaseHelper_Users(getApplicationContext());
+        databaseHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
     }
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -59,9 +59,9 @@ public class Main_Menu extends AppCompatActivity {
         db = databaseHelper.getReadableDatabase();
 
         //получаем данные из бд в виде курсора
-        userCursor = db.rawQuery("select * from " + DatabaseHelper_Users.TABLE_M, null);
+        userCursor = db.rawQuery("select * from " + DatabaseHelper_Users_Merop.TABLE_M, null);
         // определяем, какие столбцы из курсора будут выводиться в ListView
-        String[] headers = new String[]{DatabaseHelper_Users.COLUMN_NAME, DatabaseHelper_Users.COLUMN_VREMA, DatabaseHelper_Users.COLUMN_ORG, DatabaseHelper_Users.COLUMN_OPISANIE};
+        String[] headers = new String[]{DatabaseHelper_Users_Merop.COLUMN_NAME, DatabaseHelper_Users_Merop.COLUMN_VREMA, DatabaseHelper_Users_Merop.COLUMN_ORG, DatabaseHelper_Users_Merop.COLUMN_OPISANIE};
         // создаем адаптер, передаем в него курсор
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);

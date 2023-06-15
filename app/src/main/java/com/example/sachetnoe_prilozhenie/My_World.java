@@ -14,7 +14,7 @@ public class My_World extends AppCompatActivity {
 
 
     private TextView textFio, textEmail, textStatus, textPol;
-    private DatabaseHelper_Users dbHelper;
+    private DatabaseHelper_Users_Merop dbHelper;
 
     @SuppressLint({"Range", "CutPasteId"})
     @Override
@@ -22,7 +22,7 @@ public class My_World extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_world);
 
-        dbHelper = new DatabaseHelper_Users(getApplicationContext());
+        dbHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
 
         textEmail = findViewById(R.id.emailText);
         textFio = findViewById(R.id.fioText);
@@ -40,22 +40,22 @@ public class My_World extends AppCompatActivity {
         Intent intent1 = getIntent();
         String email = intent1.getStringExtra("email");
         if (email != null) {
-            String[] columns = {DatabaseHelper_Users.COLUMN_ID};
-            String selection = DatabaseHelper_Users.COLUMN_EMAIL + "=?";
+            String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID};
+            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=?";
             String[] selectionArgs = {email};
-            Cursor cursor = dbHelper.query(DatabaseHelper_Users.TABLE_U, columns, selection, selectionArgs, null, null, null);
+            Cursor cursor = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null);
             if (cursor.moveToFirst()) {
-                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_ID));
+                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID));
                 // здесь вы можете использовать id для выполнения каких-либо операций
-                String[] columnsToReturn = {DatabaseHelper_Users.COLUMN_EMAIL, DatabaseHelper_Users.COLUMN_FIO, DatabaseHelper_Users.COLUMN_STATUS, DatabaseHelper_Users.COLUMN_POL};
-                String selectionToReturn = DatabaseHelper_Users.COLUMN_ID + "=?";
+                String[] columnsToReturn = {DatabaseHelper_Users_Merop.COLUMN_EMAIL, DatabaseHelper_Users_Merop.COLUMN_FIO, DatabaseHelper_Users_Merop.COLUMN_STATUS, DatabaseHelper_Users_Merop.COLUMN_POL};
+                String selectionToReturn = DatabaseHelper_Users_Merop.COLUMN_ID + "=?";
                 String[] selectionArgsToReturn = {String.valueOf(id)};
-                Cursor cursorToReturn = dbHelper.query(DatabaseHelper_Users.TABLE_U, columnsToReturn, selectionToReturn, selectionArgsToReturn, null, null, null);
+                Cursor cursorToReturn = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columnsToReturn, selectionToReturn, selectionArgsToReturn, null, null, null);
                 if (cursorToReturn.moveToFirst()) {
-                    String emailToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_EMAIL));
-                    String fioToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_FIO));
-                    String statusToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_STATUS));
-                    String polToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_POL));
+                    String emailToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_EMAIL));
+                    String fioToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_FIO));
+                    String statusToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_STATUS));
+                    String polToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_POL));
                     textEmail.setText(emailToReturn);
                     textFio.setText("ФИО: "+fioToReturn);
                     textStatus.setText("Статус: "+statusToReturn);

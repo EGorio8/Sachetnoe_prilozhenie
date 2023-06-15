@@ -18,7 +18,7 @@ public class Registration extends AppCompatActivity {
     private EditText fioEditText, emailEditText, passwordEditText;
     private CheckBox statusCheckBox;
     private Switch PolSwitch;
-    private DatabaseHelper_Users dbHelper;
+    private DatabaseHelper_Users_Merop dbHelper;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,7 +26,7 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration);
 
-        dbHelper = new DatabaseHelper_Users(this);
+        dbHelper = new DatabaseHelper_Users_Merop(this);
 
         fioEditText = findViewById(R.id.org);
         emailEditText = findViewById(R.id.fioText);
@@ -62,12 +62,12 @@ public class Registration extends AppCompatActivity {
         if (!fio.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(DatabaseHelper_Users.COLUMN_FIO, fio);
-            values.put(DatabaseHelper_Users.COLUMN_EMAIL, email);
-            values.put(DatabaseHelper_Users.COLUMN_PASSWORD, password);
-            values.put(DatabaseHelper_Users.COLUMN_POL, pol);
-            values.put(DatabaseHelper_Users.COLUMN_STATUS, status);
-            values.put(DatabaseHelper_Users.COLUMN_REATING, reating);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_FIO, fio);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_EMAIL, email);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_PASSWORD, password);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_POL, pol);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_STATUS, status);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_REATING, reating);
 
             // Проверяем наличие пользователя с указанным email
             boolean exists = dbHelper.checkUser(email);

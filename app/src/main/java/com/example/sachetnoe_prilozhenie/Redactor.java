@@ -18,7 +18,7 @@ public class Redactor extends AppCompatActivity {
     private EditText textFio, textEmail, textPassword;
     private CheckBox textStatus;
     private Switch textPol;
-    private DatabaseHelper_Users dbHelper;
+    private DatabaseHelper_Users_Merop dbHelper;
 
     @SuppressLint({"Range", "WrongViewCast"})
     @Override
@@ -26,7 +26,7 @@ public class Redactor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.redactor);
 
-        dbHelper = new DatabaseHelper_Users(getApplicationContext());
+        dbHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
 
         textFio = findViewById(R.id.red_Fio);
         textEmail = findViewById(R.id.red_Email);
@@ -47,23 +47,23 @@ public class Redactor extends AppCompatActivity {
         Intent intent3 = getIntent();
         String email = intent3.getStringExtra("email");
         if (email != null) {
-            String[] columns = {DatabaseHelper_Users.COLUMN_ID};
-            String selection = DatabaseHelper_Users.COLUMN_EMAIL + "=?";
+            String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID};
+            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=?";
             String[] selectionArgs = {email};
-            Cursor cursor = dbHelper.query(DatabaseHelper_Users.TABLE_U, columns, selection, selectionArgs, null, null, null);
+            Cursor cursor = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null);
             if (cursor.moveToFirst()) {
-                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users.COLUMN_ID));
+                int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID));
 
-                String[] columnsToReturn = {DatabaseHelper_Users.COLUMN_EMAIL, DatabaseHelper_Users.COLUMN_FIO, DatabaseHelper_Users.COLUMN_STATUS, DatabaseHelper_Users.COLUMN_POL, DatabaseHelper_Users.COLUMN_PASSWORD};
-                String selectionToReturn = DatabaseHelper_Users.COLUMN_ID + "=?";
+                String[] columnsToReturn = {DatabaseHelper_Users_Merop.COLUMN_EMAIL, DatabaseHelper_Users_Merop.COLUMN_FIO, DatabaseHelper_Users_Merop.COLUMN_STATUS, DatabaseHelper_Users_Merop.COLUMN_POL, DatabaseHelper_Users_Merop.COLUMN_PASSWORD};
+                String selectionToReturn = DatabaseHelper_Users_Merop.COLUMN_ID + "=?";
                 String[] selectionArgsToReturn = {String.valueOf(id)};
-                Cursor cursorToReturn = dbHelper.query(DatabaseHelper_Users.TABLE_U, columnsToReturn, selectionToReturn, selectionArgsToReturn, null, null, null);
+                Cursor cursorToReturn = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columnsToReturn, selectionToReturn, selectionArgsToReturn, null, null, null);
                 if (cursorToReturn.moveToFirst()) {
-                    String emailToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_EMAIL));
-                    String fioToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_FIO));
-                    String statusToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_STATUS));
-                    String polToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_POL));
-                    String passwordToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users.COLUMN_PASSWORD));
+                    String emailToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_EMAIL));
+                    String fioToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_FIO));
+                    String statusToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_STATUS));
+                    String polToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_POL));
+                    String passwordToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_PASSWORD));
                     textEmail.setText(emailToReturn);
                     textFio.setText(fioToReturn);
                     textPassword.setText(passwordToReturn);
@@ -99,18 +99,18 @@ public class Redactor extends AppCompatActivity {
             String pol = textPol.isChecked() ? "Женский" : "Мужской";
 
             ContentValues values = new ContentValues();
-            values.put(DatabaseHelper_Users.COLUMN_EMAIL, new_email);
-            values.put(DatabaseHelper_Users.COLUMN_FIO, fio);
-            values.put(DatabaseHelper_Users.COLUMN_STATUS, status);
-            values.put(DatabaseHelper_Users.COLUMN_POL, pol);
-            values.put(DatabaseHelper_Users.COLUMN_PASSWORD, password);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_EMAIL, new_email);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_FIO, fio);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_STATUS, status);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_POL, pol);
+            values.put(DatabaseHelper_Users_Merop.COLUMN_PASSWORD, password);
 
 
 
-            String selection = DatabaseHelper_Users.COLUMN_EMAIL + "=?";
+            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=?";
             String[] selectionArgs = {email};
 
-            int count = dbHelper.update(DatabaseHelper_Users.TABLE_U, values, selection, selectionArgs);
+            int count = dbHelper.update(DatabaseHelper_Users_Merop.TABLE_U, values, selection, selectionArgs);
             if (count > 0) {
                 Toast.makeText(this, "Ваши данные успешно сохранены", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, Autor_Regis.class);

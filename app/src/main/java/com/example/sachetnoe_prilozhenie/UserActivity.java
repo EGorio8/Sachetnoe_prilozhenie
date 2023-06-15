@@ -22,7 +22,7 @@ public class UserActivity extends AppCompatActivity {
     Button delButton;
     Button saveButton;
 
-    DatabaseHelper_Users sqlHelper;
+    DatabaseHelper_Users_Merop sqlHelper;
     SQLiteDatabase db;
     Cursor userCursor;
     long userId=0;
@@ -39,7 +39,7 @@ public class UserActivity extends AppCompatActivity {
         delButton = findViewById(R.id.deleteButton);
         saveButton = findViewById(R.id.saveButton);
 
-        sqlHelper = new DatabaseHelper_Users(this);
+        sqlHelper = new DatabaseHelper_Users_Merop(this);
         db = sqlHelper.getWritableDatabase();
 
         Bundle extras = getIntent().getExtras();
@@ -49,8 +49,8 @@ public class UserActivity extends AppCompatActivity {
         // если 0, то добавление
         if (userId > 0) {
             // получаем элемент по id из бд
-            userCursor = db.rawQuery("select * from " + DatabaseHelper_Users.TABLE_M + " where " +
-                    DatabaseHelper_Users.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
+            userCursor = db.rawQuery("select * from " + DatabaseHelper_Users_Merop.TABLE_M + " where " +
+                    DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
             userCursor.moveToFirst();
             nameBox.setText(userCursor.getString(1));
             vremaBox.setText(userCursor.getString(2));
@@ -65,21 +65,21 @@ public class UserActivity extends AppCompatActivity {
 
     public void save(View view){
         ContentValues cv = new ContentValues();
-        cv.put(DatabaseHelper_Users.COLUMN_NAME, nameBox.getText().toString());
-        cv.put(DatabaseHelper_Users.COLUMN_VREMA, vremaBox.getText().toString());
-        cv.put(DatabaseHelper_Users.COLUMN_ORG, orgBox.getText().toString());
-        cv.put(DatabaseHelper_Users.COLUMN_OPISANIE, opisanieBox.getText().toString());
+        cv.put(DatabaseHelper_Users_Merop.COLUMN_NAME, nameBox.getText().toString());
+        cv.put(DatabaseHelper_Users_Merop.COLUMN_VREMA, vremaBox.getText().toString());
+        cv.put(DatabaseHelper_Users_Merop.COLUMN_ORG, orgBox.getText().toString());
+        cv.put(DatabaseHelper_Users_Merop.COLUMN_OPISANIE, opisanieBox.getText().toString());
         //cv.put(DatabaseHelper.COLUMN_VREMA, Integer.parseInt(vremaBox.getText().toString()));
 
         if (userId > 0) {
-            db.update(DatabaseHelper_Users.TABLE_M, cv, DatabaseHelper_Users.COLUMN_ID_MER + "=" + userId, null);
+            db.update(DatabaseHelper_Users_Merop.TABLE_M, cv, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=" + userId, null);
         } else {
-            db.insert(DatabaseHelper_Users.TABLE_M, null, cv);
+            db.insert(DatabaseHelper_Users_Merop.TABLE_M, null, cv);
         }
         goHome();
     }
     public void delete(View view){
-        db.delete(DatabaseHelper_Users.TABLE_M, DatabaseHelper_Users.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
+        db.delete(DatabaseHelper_Users_Merop.TABLE_M, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
         goHome();
     }
     private void goHome(){
