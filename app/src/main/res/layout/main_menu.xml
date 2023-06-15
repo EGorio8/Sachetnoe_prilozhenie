@@ -97,14 +97,14 @@
         android:id="@+id/EmailText"
         android:layout_width="396dp"
         android:layout_height="17dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:textColor="#FEFEFE"
         android:textSize="8sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.963" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
