@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232A35"
+    android:visibility="visible"
+    tools:visibility="visible">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="210dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/button17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="170dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="12dp"
+                android:background="#3D5070"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/fioText"
+                android:layout_width="170dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="12dp"
+                android:background="#3D5070"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textAllCaps="false"
+                android:textColor="#FEFEFE"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="170dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="12dp"
+                android:background="#3D5070"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textAllCaps="false"
+                android:textColor="#FEFEFE"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/polText"
+                android:layout_width="170dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:background="#3D5070"
+                android:fontFamily="sans-serif"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textAllCaps="false"
+                android:textColor="#FEFEFE"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="413dp"
+        android:layout_height="74dp"
+        android:background="#132C6A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="413dp"
+        android:layout_height="74dp"
+        android:background="#132C6A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="231dp"
+        android:layout_height="41dp"
+        android:fontFamily="sans-serif"
+        android:onClick="go_out"
+        android:text="Выйти из аккаунта"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#3E4A77"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="170dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif"
+        android:onClick="go_to_my_merop"
+        android:text="Мои Мероприятия"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#3E4A77"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="170dp"
+        android:layout_height="57dp"
+        android:fontFamily="sans-serif"
+        android:onClick="go_to_my_sobit"
+        android:text="Мои События"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:backgroundTint="#3E4A77"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/button17"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.468" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:text=""
+        android:layout_width="151dp"
+        android:layout_height="159dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176"
+        app:srcCompat="@drawable/avatarios" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="215dp"
+        android:layout_height="26dp"
+        android:fontFamily="sans-serif"
+        android:text="Личный кабинет волонтёра"
+        android:textAllCaps="true"
+        android:textColor="#1D2642"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Button
+        android:id="@+id/go_to_menu"
+        android:layout_width="67dp"
+        android:layout_height="43dp"
+        android:onClick="go_to_menu"
+        app:backgroundTint="#3E4A77"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:rippleColor="#2D3967"
+        app:strokeColor="#33436A" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="68dp"
+        android:layout_height="41dp"
+        android:onClick="editData"
+        android:textSize="100dp"
+        app:backgroundTint="#3E4A77"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="151dp"
+        android:layout_height="158dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.76"
+        app:srcCompat="@drawable/_222" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="170dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="55dp"
+        android:text="Рейтинг"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.557" />
+
+    <TextView
+        android:id="@+id/reatingText"
+        android:layout_width="142dp"
+        android:layout_height="38dp"
+        android:fontFamily="sans-serif"
+        android:paddingLeft="50dp"
+        android:text="Медь"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.866" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

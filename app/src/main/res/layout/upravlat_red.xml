@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232A35"
+    tools:context=".Upravlat_Red">
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="413dp"
+        android:layout_height="74dp"
+        android:background="#132C6A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="201dp"
+        android:layout_height="61dp"
+        android:fontFamily="sans-serif"
+        android:text="&quot;Название мероприятия&quot;"
+        android:textAllCaps="true"
+        android:textColor="#1D2642"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006" />
+
+    <Button
+        android:id="@+id/button22"
+        android:layout_width="67dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:backgroundTint="#3E4A77"
+        app:icon="?attr/actionModeCloseDrawable"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.516"
+        app:rippleColor="#2D3967"
+        app:strokeColor="#33436A" />
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="583dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Участники"
+                    android:textAllCaps="true"
+                    android:textColor="#FEFEFE"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Баллы x2"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Баллы x2"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Баллы x2"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8895B4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Заявки"
+                    android:textAllCaps="true"
+                    android:textColor="#FEFEFE"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Принять"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Принять"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:paddingLeft="0dp"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/avatarios"
+                        tools:srcCompat="@drawable/avatarios"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="148dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="ФИО"
+                        android:textColor="#FEFEFE" />
+
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="67dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Принять"
+                        app:backgroundTint="#3E4A77"
+                        app:iconTint="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintEnd_toStartOf="@+id/textView14"
+                        app:layout_constraintHorizontal_bias="0.117"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.516"
+                        app:rippleColor="#2D3967"
+                        app:strokeColor="#33436A" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#8895B4" />
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="#283751"
+                android:ems="10"
+                android:hint="Количество баллов"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:textColor="#FEFEFE"
+                android:textColorHint="#43FEFEFE"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/textView50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Раздать баллы"
+                app:backgroundTint="#3E4A77"
+                app:iconTint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
+                app:layout_constraintHorizontal_bias="0.117"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.516"
+                app:rippleColor="#2D3967"
+                app:strokeColor="#33436A" />
+
+            <Button
+                android:id="@+id/button26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Отменить мероприятие"
+                app:backgroundTint="#3E4A77"
+                app:iconTint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
+                app:layout_constraintHorizontal_bias="0.117"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.516"
+                app:rippleColor="#2D3967"
+                app:strokeColor="#33436A" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
