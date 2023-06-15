@@ -46,6 +46,7 @@ public class Registration extends AppCompatActivity {
         String status = "";
         int reating = 0;
         //здесь был Гиша
+        //Capybarin was here
 
         if (statusCheckBox.isChecked()) {
             status = "Организатор";
