@@ -45,6 +45,7 @@ public class Registration extends AppCompatActivity {
         String password = passwordEditText.getText().toString().trim();
         String status = "";
         int reating = 0;
+        //здесь был Гиша
 
         if (statusCheckBox.isChecked()) {
             status = "Организатор";
