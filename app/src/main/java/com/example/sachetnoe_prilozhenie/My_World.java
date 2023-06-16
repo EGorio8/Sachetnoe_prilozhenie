@@ -7,13 +7,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class My_World extends AppCompatActivity {
 
 
-    private TextView textFio, textEmail, textStatus, textPol;
+    private TextView textFio, textEmail, textStatus, textPol, textReating;
+    private ImageView ImageIcon;
     private DatabaseHelper_Users_Merop dbHelper;
 
     @SuppressLint({"Range", "CutPasteId"})
@@ -28,6 +30,8 @@ public class My_World extends AppCompatActivity {
         textFio = findViewById(R.id.fioText);
         textStatus = findViewById(R.id.statusText);
         textPol = findViewById(R.id.polText);
+        textReating = findViewById(R.id.reatingText);
+        ImageIcon = findViewById(R.id.icon_reating);
 
     }
     @Override
@@ -47,7 +51,7 @@ public class My_World extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 int id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID));
                 // здесь вы можете использовать id для выполнения каких-либо операций
-                String[] columnsToReturn = {DatabaseHelper_Users_Merop.COLUMN_EMAIL, DatabaseHelper_Users_Merop.COLUMN_FIO, DatabaseHelper_Users_Merop.COLUMN_STATUS, DatabaseHelper_Users_Merop.COLUMN_POL};
+                String[] columnsToReturn = {DatabaseHelper_Users_Merop.COLUMN_EMAIL, DatabaseHelper_Users_Merop.COLUMN_FIO, DatabaseHelper_Users_Merop.COLUMN_STATUS, DatabaseHelper_Users_Merop.COLUMN_POL, DatabaseHelper_Users_Merop.COLUMN_REATING};
                 String selectionToReturn = DatabaseHelper_Users_Merop.COLUMN_ID + "=?";
                 String[] selectionArgsToReturn = {String.valueOf(id)};
                 Cursor cursorToReturn = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columnsToReturn, selectionToReturn, selectionArgsToReturn, null, null, null);
@@ -56,10 +60,28 @@ public class My_World extends AppCompatActivity {
                     String fioToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_FIO));
                     String statusToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_STATUS));
                     String polToReturn = cursorToReturn.getString(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_POL));
+                    int reatingToReturn = cursorToReturn.getInt(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_REATING));
                     textEmail.setText(emailToReturn);
                     textFio.setText("ФИО: "+fioToReturn);
                     textStatus.setText("Статус: "+statusToReturn);
                     textPol.setText("Пол: "+polToReturn);
+                    if(reatingToReturn<201){
+                        textReating.setText("Медь");
+                        ImageIcon.setImageResource(R.drawable.copper);
+                    }else if(reatingToReturn<401 && reatingToReturn>200){
+                        textReating.setText("Бронза");
+                        ImageIcon.setImageResource(R.drawable.bronze);
+                    }else if(reatingToReturn<601 && reatingToReturn>400){
+                        textReating.setText("Серебро");
+                        ImageIcon.setImageResource(R.drawable.silver);
+                    }else if(reatingToReturn<801 && reatingToReturn>600){
+                        textReating.setText("Золото");
+                        ImageIcon.setImageResource(R.drawable.gold);
+                    }else if(reatingToReturn<1001 && reatingToReturn>800){
+                        textReating.setText("Бриллиант");
+                        ImageIcon.setImageResource(R.drawable.diamond);
+                    }
+
                 } else {
                     textEmail.setText("");
                     textFio.setText("");

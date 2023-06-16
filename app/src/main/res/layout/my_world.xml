@@ -223,7 +223,7 @@
         app:layout_constraintVertical_bias="0.974" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/icon_reating"
         android:layout_width="151dp"
         android:layout_height="158dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -231,14 +231,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.76"
-        app:srcCompat="@drawable/_222" />
+        app:srcCompat="@drawable/copper" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="170dp"
         android:layout_height="29dp"
         android:fontFamily="sans-serif"
-        android:paddingLeft="55dp"
+        android:gravity="center"
         android:text="Рейтинг"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -256,7 +256,7 @@
         android:layout_width="142dp"
         android:layout_height="38dp"
         android:fontFamily="sans-serif"
-        android:paddingLeft="50dp"
+        android:gravity="center"
         android:text="Медь"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

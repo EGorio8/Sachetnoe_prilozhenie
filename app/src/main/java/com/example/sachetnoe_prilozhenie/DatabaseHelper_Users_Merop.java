@@ -55,7 +55,7 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_U);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_U);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_M);
         onCreate(db);
     }
 
