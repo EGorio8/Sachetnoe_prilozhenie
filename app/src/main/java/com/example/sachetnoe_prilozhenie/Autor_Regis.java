@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+// Класс для авторизации пользователей
 public class Autor_Regis extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
@@ -20,36 +21,36 @@ public class Autor_Regis extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autor_regis);
 
-        dbHelper = new DatabaseHelper_Users_Merop(this); // создание экземпляра класса DatabaseHelper
+        dbHelper = new DatabaseHelper_Users_Merop(this); // Создание экземпляра класса DatabaseHelper
 
         emailEditText = findViewById(R.id.fioText);
         passwordEditText = findViewById(R.id.password);
     }
 
-    // метод для выполнения входа в приложение
+    // Метод для выполнения входа в приложение
     public void enter(View view) {
 
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        if(!email.isEmpty() && !password.isEmpty()) { // проверка заполнения полей логина и пароля
+        if(!email.isEmpty() && !password.isEmpty()) { // Проверка заполнения полей логина и пароля
 
-            SQLiteDatabase db = dbHelper.getReadableDatabase(); // открытие базы данных в режиме только чтения
+            SQLiteDatabase db = dbHelper.getReadableDatabase(); // Открытие базы данных в режиме только чтения
 
-            String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID}; // массив столбцов для выборки
-            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=? AND " + DatabaseHelper_Users_Merop.COLUMN_PASSWORD + "=?"; // условие выборки
-            String[] selectionArgs = {email, password}; // аргументы условия выборки
+            String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID}; // Массив столбцов для выборки
+            String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=? AND " + DatabaseHelper_Users_Merop.COLUMN_PASSWORD + "=?"; // Условие выборки
+            String[] selectionArgs = {email, password}; // Аргументы условия выборки
 
             Cursor cursor = db.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null); // выполнение выборки
 
-            if(cursor != null && cursor.getCount() > 0) { // проверка наличия найденных записей в таблице пользователей
+            if(cursor != null && cursor.getCount() > 0) { // Проверка наличия найденных записей в таблице пользователей
                 Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, Main_Menu.class); // переход на экран главного меню
-                startActivity(intent); // запуск новой активности
-                finish(); // закрываем текущую активити
+                Intent intent = new Intent(this, Main_Menu.class); // Переход на экран главного меню
+                startActivity(intent); // Запуск новой активности
+                finish(); // Закрываем текущую активити
                 Intent intent0 = new Intent(this, My_World.class);
                 intent0.putExtra("email", emailEditText.getText().toString());
-                startActivity(intent0); // запуск новой активности My_World
+                startActivity(intent0); // Запуск новой активности My_World
             } else {
                 Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
             }
@@ -60,23 +61,23 @@ public class Autor_Regis extends AppCompatActivity {
     }
 
     public void reg(View view) {
-        Intent intent = new Intent(this, Registration.class); // переход на экран регистрации нового пользователя
-        startActivity(intent); // запуск новой активности
+        Intent intent = new Intent(this, Registration.class); // Переход на экран регистрации нового пользователя
+        startActivity(intent); // Запуск новой активности
     }
 
-    // если приложение вернется к этой активити из другой, например, когда пользователь нажмет на кнопку "назад"
+    // Если приложение вернется к этой активити из другой, например, когда пользователь нажмет на кнопку "назад"
     @Override
     protected void onResume() {
         super.onResume();
 
-        emailEditText.setText(""); // очищаем поля ввода логина и пароля
+        emailEditText.setText(""); // Очищаем поля ввода логина и пароля
         passwordEditText.setText("");
     }
 
-    // закрываем базу данных при уничтожении активности
+    // Закрываем базу данных при уничтожении активности
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        dbHelper.close(); // закрытие базы данных
+        dbHelper.close(); // Закрытие базы данных
     }
 }
