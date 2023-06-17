@@ -83,12 +83,10 @@
     <ScrollView
         android:id="@+id/list"
         android:layout_width="411dp"
-        android:layout_height="509dp"
+        android:layout_height="470dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView18"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView15">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <LinearLayout
@@ -114,5 +112,20 @@
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView15"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/searchEvent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:background="#384253"
+        android:ems="10"
+        android:hint="Название мероприятия"
+        android:inputType="text"
+        android:textColorHint="#51FEFEFE"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

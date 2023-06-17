@@ -86,7 +86,7 @@ public class UserActivity extends AppCompatActivity {
         // закрываем подключение
         db.close();
         // переход к главной activity
-        Intent intent = new Intent(this, Upravlat.class);
+        Intent intent = new Intent(this, Main_Menu.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
