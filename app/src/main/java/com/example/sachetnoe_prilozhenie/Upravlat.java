@@ -73,9 +73,10 @@ public class Upravlat extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // Действия при нажатии на TextView
-                    Intent intent = new Intent(getApplicationContext(), Upravlat_Red.class);
-                    intent.putExtra("_id_mer", _id_mer);
-                    startActivity(intent);
+                    Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
+                    intent0.putExtra("_id_mer", _id_mer);
+                    intent0.putExtra("email", textEmail.getText().toString());
+                    startActivity(intent0);
                 }
             });
 
@@ -87,11 +88,6 @@ public class Upravlat extends AppCompatActivity {
         // Закрытие курсора и базы данных
         cursor.close();
         dbHelper.close();
-    }
-
-    public void upr(View view) {
-        Intent intent = new Intent(this, Upravlat_Red.class);
-        startActivity(intent);
     }
 
     public void add(View view) {

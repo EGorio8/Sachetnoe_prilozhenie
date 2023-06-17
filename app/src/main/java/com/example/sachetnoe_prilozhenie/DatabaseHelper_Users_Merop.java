@@ -1,4 +1,5 @@
 package com.example.sachetnoe_prilozhenie;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,6 +27,16 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
     public static final String COLUMN_ORG = "org";
     public static final String COLUMN_OPISANIE = "opisanie";
 
+    public static final String TABLE_Z = "zayavka";
+    public static final String COLUMN_ID_ZAYAV = "_id_zayav";
+    public static final String COLUMN_ID_MER_Z = "merop_id";
+    public static final String COLUMN_ID_USER_Z = "user_id";
+
+    public static final String TABLE_UCHAV = "uchavstniki";
+    public static final String COLUMN_ID_UCH = "_id";
+    public static final String COLUMN_ID_MER_UCH = "merop_id";
+    public static final String COLUMN_ID_USER_UCH = "user_id";
+
 
     public DatabaseHelper_Users_Merop(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,12 +61,29 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
                 COLUMN_ORG + " TEXT, " +
                 COLUMN_OPISANIE + " TEXT"
                 + ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_Z + " (" +
+                COLUMN_ID_ZAYAV + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID_MER_Z + " INTEGER , " +
+                COLUMN_ID_USER_Z + " INTEGER , " + "" +
+                "FOREIGN KEY (" + COLUMN_ID_MER_Z + ") REFERENCES " + TABLE_M + "(" + COLUMN_ID_MER + "),"+
+                "FOREIGN KEY (" + COLUMN_ID_USER_Z + ") REFERENCES " + TABLE_U + "(" + COLUMN_ID + ")" + ")");
+
+        db.execSQL("CREATE TABLE " + TABLE_UCHAV + " (" +
+                COLUMN_ID_UCH + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID_MER_UCH + " INTEGER , " +
+                COLUMN_ID_USER_UCH + " INTEGER , " +
+                "FOREIGN KEY (" + COLUMN_ID_MER_UCH + ") REFERENCES " + TABLE_M + "(" + COLUMN_ID_MER + "),"+
+                "FOREIGN KEY (" + COLUMN_ID_USER_UCH + ") REFERENCES " + TABLE_U + "(" + COLUMN_ID + ")"
+                + ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_U);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_M);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Z);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_UCHAV);
         onCreate(db);
     }
 
@@ -91,16 +119,15 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public Cursor getData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_M, null);
+    }
+
     public int update(String table, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = this.getWritableDatabase();
         int count = db.update(table, values, selection, selectionArgs);
         db.close();
         return count;
     }
-
-    public Cursor getData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_M, null);
-    }
-
 }

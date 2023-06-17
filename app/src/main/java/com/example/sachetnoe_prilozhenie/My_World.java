@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 public class My_World extends AppCompatActivity {
 
-
     private TextView textFio, textEmail, textStatus, textPol, textReating;
     private ImageView ImageIcon;
     private DatabaseHelper_Users_Merop dbHelper;
@@ -101,7 +100,6 @@ public class My_World extends AppCompatActivity {
         }
     }
 
-
     public void go_out(View view) {
         Intent intent = new Intent(this, Autor_Regis.class);
         startActivity(intent);
@@ -130,5 +128,4 @@ public class My_World extends AppCompatActivity {
         intent0.putExtra("email", textEmail.getText().toString());
         startActivity(intent0);
     }
-
 }

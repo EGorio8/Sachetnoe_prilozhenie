@@ -44,6 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:onClick="uprav"
         app:backgroundTint="#3E4A77"
         app:icon="?attr/actionModeCloseDrawable"
         app:iconTint="#FFFFFF"
@@ -57,6 +58,7 @@
         app:strokeColor="#33436A" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="409dp"
         android:layout_height="583dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -460,5 +462,14 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/EmailText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FEFEFE"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
