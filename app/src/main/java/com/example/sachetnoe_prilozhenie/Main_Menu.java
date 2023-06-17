@@ -16,6 +16,7 @@ public class Main_Menu extends AppCompatActivity {
     Cursor userCursor;
     SimpleCursorAdapter userAdapter;
     String status;
+    String fio;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +32,7 @@ public class Main_Menu extends AppCompatActivity {
         Intent intent0 = getIntent();
         String email = intent0.getStringExtra("email");
         status = intent0.getStringExtra("status");
+        fio = intent0.getStringExtra("fio");
         int userId = getIntent().getIntExtra("id", -1); // извлекаем значение id из intent
         int[] colors = new int[]{
                 Color.parseColor("#202630"),
@@ -117,6 +119,7 @@ public class Main_Menu extends AppCompatActivity {
         Intent intent1 = new Intent(this, My_World.class);
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("status", status);
+        intent1.putExtra("fio", fio);
         startActivity(intent1);
     }
 
@@ -125,6 +128,7 @@ public class Main_Menu extends AppCompatActivity {
         Intent intent1 = new Intent(this, Upravlat.class);
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("status", status);
+        intent1.putExtra("fio", fio);
         startActivity(intent1);
     }
 

@@ -21,6 +21,7 @@ public class Upravlat extends AppCompatActivity {
     private LinearLayout layout;
     private EditText searchEditText;
     String status;
+    public String fio;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,8 +39,6 @@ public class Upravlat extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 filterEvents(s.toString()); // вызов функции фильтрации мероприятий по введенному тексту
             }
-
-
             @Override
             public void afterTextChanged(Editable s) {}
         });
@@ -55,56 +54,50 @@ public class Upravlat extends AppCompatActivity {
         Intent intent1 = getIntent();
         String email = intent1.getStringExtra("email");
         status = intent1.getStringExtra("status");
+        fio = intent1.getStringExtra("fio");
 
         textEmail.setText(email);
 
         while (cursor.moveToNext()) {
-            // Получение данных из курсора
             @SuppressLint("Range") int _id_mer = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID_MER));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME));
             @SuppressLint("Range") String vrema = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_VREMA));
-            @SuppressLint("Range") String fio = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ORG));
+            @SuppressLint("Range") String org = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ORG));
             @SuppressLint("Range") String opisanie = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_OPISANIE));
-
-            // Создание нового TextView
-            TextView textView = new TextView(this);
-
-            int r = (int) (Math.random() * 100);
-            int g = (int) (Math.random() * 100);
-            int b = (int) (Math.random() * 150);
-
-            // Установка цвета фона
-            textView.setBackgroundColor(Color.rgb(r, g, b));
-
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            textView.setTextColor(Color.WHITE);
-
-            textView.setId(_id_mer); // Установка идентификатора для TextView
-            textView.setText(_id_mer + ")" + " МЕРОПРИЯТИЕ: " + "\n" + name + "\n" + "ДАТА: " + vrema + "\n" + "ФИО ОРГАНИЗАТОРА: " + "\n" + fio + "\n" + "ОПИСАНИЕ: " + "\n" + opisanie);
-
-            // Настройка параметров макета для каждого TextView
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 16, 0, 0);
-            textView.setLayoutParams(params);
-
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Действия при нажатии на TextView
-                    Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
-                    intent0.putExtra("_id_mer", _id_mer);
-                    intent0.putExtra("email", textEmail.getText().toString());
-                    intent0.putExtra("status", status);
-                    startActivity(intent0);
-                }
-            });
-
-
-            // Добавление TextView в родительский Layout
-            layout.addView(textView);
+            if (fio != null && fio.equals(org)) { // Проверка на равенство строк org и fio
+                // Создание нового TextView
+                TextView textView = new TextView(this);
+                // Установка цвета фона
+                int r = (int) (Math.random() * 100);
+                int g = (int) (Math.random() * 100);
+                int b = (int) (Math.random() * 150);
+                textView.setBackgroundColor(Color.rgb(r, g, b));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                textView.setTextColor(Color.WHITE);
+                textView.setId(_id_mer); // Установка идентификатора для TextView
+                textView.setText(_id_mer + ")" + " МЕРОПРИЯТИЕ: " + "\n" + name + "\n" + "ДАТА: " + vrema + "\n" + "ФИО ОРГАНИЗАТОРА: " + "\n" + fio + "\n" + "ОПИСАНИЕ: " + "\n" + opisanie);
+                // Настройка параметров макета для каждого TextView
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 16, 0, 0);
+                textView.setLayoutParams(params);
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Действия при нажатии на TextView
+                        Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
+                        intent0.putExtra("_id_mer", _id_mer);
+                        intent0.putExtra("email", textEmail.getText().toString());
+                        intent0.putExtra("status", status);
+                        intent0.putExtra("fio", fio);
+                        startActivity(intent0);
+                    }
+                });
+                // Добавление TextView в родительский Layout
+                layout.addView(textView);
+            }
         }
 
         // Закрытие курсора и базы данных
@@ -128,51 +121,53 @@ public class Upravlat extends AppCompatActivity {
             @SuppressLint("Range") int _id_mer = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID_MER));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME));
             @SuppressLint("Range") String vrema = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_VREMA));
-            @SuppressLint("Range") String fio = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ORG));
+            @SuppressLint("Range") String org = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ORG));
             @SuppressLint("Range") String opisanie = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_OPISANIE));
-
-            // Если поисковый запрос не пустой и название мероприятия не содержит запрос, то пропускаем это мероприятие
-            if (!searchText.isEmpty() && !name.toLowerCase().contains(searchText.toLowerCase())) {
-                continue;
-            }
-
-            // Создание нового TextView
-            TextView textView = new TextView(this);
-
-            // Генерация случайного цвета фона
-            int r = (int) (Math.random() * 100);
-            int g = (int) (Math.random() * 100);
-            int b = (int) (Math.random() * 150);
-
-            // Установка цвета фона, размера и цвета текста TextView
-            textView.setBackgroundColor(Color.rgb(r, g, b));
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-            textView.setTextColor(Color.WHITE);
-
-            textView.setId(_id_mer); // Установка идентификатора для TextView
-            textView.setText(_id_mer + ")" + " МЕРОПРИЯТИЕ: " + "\n" + name + "\n" + "ДАТА: " + vrema + "\n" + "ФИО ОРГАНИЗАТОРА: " + "\n" + fio + "\n" + "ОПИСАНИЕ: " + "\n" + opisanie);
-
-            // Настройка параметров макета для каждого TextView
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 16, 0, 0);
-            textView.setLayoutParams(params);
-
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Действия при нажатии на TextView
-                    Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
-                    intent0.putExtra("_id_mer", _id_mer);
-                    intent0.putExtra("email", textEmail.getText().toString());
-                    startActivity(intent0);
+            if (fio != null && fio.equals(org)) { // Проверка на равенство строк org и fio
+                // Если поисковый запрос не пустой и название мероприятия не содержит запрос, то пропускаем это мероприятие
+                if (!searchText.isEmpty() && !name.toLowerCase().contains(searchText.toLowerCase())) {
+                    continue;
                 }
-            });
 
-            // Добавление TextView в родительский Layout
-            layout.addView(textView);
+                // Создание нового TextView
+                TextView textView = new TextView(this);
+
+                // Генерация случайного цвета фона
+                int r = (int) (Math.random() * 100);
+                int g = (int) (Math.random() * 100);
+                int b = (int) (Math.random() * 150);
+
+                // Установка цвета фона, размера и цвета текста TextView
+                textView.setBackgroundColor(Color.rgb(r, g, b));
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                textView.setTextColor(Color.WHITE);
+
+                textView.setId(_id_mer); // Установка идентификатора для TextView
+                textView.setText(_id_mer + ")" + " МЕРОПРИЯТИЕ: " + "\n" + name + "\n" + "ДАТА: " + vrema + "\n" + "ФИО ОРГАНИЗАТОРА: " + "\n" + fio + "\n" + "ОПИСАНИЕ: " + "\n" + opisanie);
+
+                // Настройка параметров макета для каждого TextView
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 16, 0, 0);
+                textView.setLayoutParams(params);
+
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Действия при нажатии на TextView
+                        Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
+                        intent0.putExtra("_id_mer", _id_mer);
+                        intent0.putExtra("email", textEmail.getText().toString());
+                        intent0.putExtra("fio", fio);
+                        startActivity(intent0);
+                    }
+                });
+
+                // Добавление TextView в родительский Layout
+                layout.addView(textView);
+            }
         }
 
         // Закрытие курсора и базы данных
@@ -188,6 +183,7 @@ public class Upravlat extends AppCompatActivity {
     public void menu(View view) {
         Intent intent0 = new Intent(this, Main_Menu.class);
         intent0.putExtra("email", textEmail.getText().toString());
+        intent0.putExtra("fio", fio);
         startActivity(intent0);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class Upravlat_Red extends AppCompatActivity {
 
     TextView textEmail;
+    public String fio;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,12 +25,14 @@ public class Upravlat_Red extends AppCompatActivity {
 
         Intent intent0 = getIntent();
         String email = intent0.getStringExtra("email");
+        fio = intent0.getStringExtra("fio");
 
         textEmail.setText(email);
     }
     public void uprav(View view) {
         Intent intent1 = new Intent(this, Upravlat.class);
         intent1.putExtra("email", textEmail.getText().toString());
+        intent1.putExtra("fio", fio);
         startActivity(intent1);
     }
 }

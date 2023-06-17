@@ -43,7 +43,7 @@ public class My_World extends AppCompatActivity {
             Cursor cursor = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null);
             if (cursor.moveToFirst()) {
                 id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID));
-                // здесь вы можете использовать id для выполнения каких-либо операций
+                // здесь мы можем использовать id для выполнения каких-либо операций
                 String[] columnsToReturn = {DatabaseHelper_Users_Merop.COLUMN_ID,DatabaseHelper_Users_Merop.COLUMN_EMAIL, DatabaseHelper_Users_Merop.COLUMN_FIO, DatabaseHelper_Users_Merop.COLUMN_STATUS, DatabaseHelper_Users_Merop.COLUMN_POL, DatabaseHelper_Users_Merop.COLUMN_REATING};
                 String selectionToReturn = DatabaseHelper_Users_Merop.COLUMN_ID + "=?";
                 String[] selectionArgsToReturn = {String.valueOf(id)};
@@ -57,7 +57,7 @@ public class My_World extends AppCompatActivity {
                     int reatingToReturn = cursorToReturn.getInt(cursorToReturn.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_REATING));
                     id = cursor.getInt(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID));
                     textEmail.setText(emailToReturn);
-                    textFio.setText("ФИО: "+fioToReturn);
+                    textFio.setText(fioToReturn);
                     textStatus.setText("Статус: "+statusToReturn);
                     textPol.setText("Пол: "+polToReturn);
                     if(reatingToReturn<201){
@@ -68,7 +68,7 @@ public class My_World extends AppCompatActivity {
                         ImageIcon.setImageResource(R.drawable.bronze);
                     }else if(reatingToReturn<601 && reatingToReturn>400){
                         textReating.setText("Серебро");
-                        ImageIcon.setImageResource(R.drawable.silver);
+                        ImageIcon.setImageResource(R.drawable.silver_1);
                     }else if(reatingToReturn<801 && reatingToReturn>600){
                         textReating.setText("Золото");
                         ImageIcon.setImageResource(R.drawable.gold);
@@ -105,6 +105,7 @@ public class My_World extends AppCompatActivity {
         intent0.putExtra("email", textEmail.getText().toString());
         intent0.putExtra("status", textStatus.getText().toString());
         intent0.putExtra("id", id); // передаем id в intent0
+        intent0.putExtra("fio", textFio.getText().toString());
         startActivity(intent0);
     }
 
