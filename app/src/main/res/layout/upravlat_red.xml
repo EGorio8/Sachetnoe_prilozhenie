@@ -80,10 +80,29 @@
                 android:textColor="#FEFEFE"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/list_zayavki"
+            <ScrollView
+                android:id="@+id/list1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@+id/imageView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/leaner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#353E4C"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </ScrollView>
 
             <TextView
                 android:id="@+id/textView46"
@@ -105,10 +124,29 @@
                 android:textColor="#FEFEFE"
                 android:textStyle="bold" />
 
-            <ListView
-                android:id="@+id/list_uchastniki"
+            <ScrollView
+                android:id="@+id/list2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toTopOf="@+id/imageView18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/leaner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#353E4C"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </ScrollView>
 
             <TextView
                 android:id="@+id/textView52"

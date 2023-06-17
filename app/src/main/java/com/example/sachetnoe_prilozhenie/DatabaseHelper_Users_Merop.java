@@ -123,6 +123,14 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_M, null);
     }
+    public Cursor getDataZ() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_Z, null);
+    }
+    public Cursor getDataUCH() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_UCHAV, null);
+    }
 
     public int update(String table, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = this.getWritableDatabase();

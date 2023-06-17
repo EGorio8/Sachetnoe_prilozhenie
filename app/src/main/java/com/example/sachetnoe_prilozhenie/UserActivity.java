@@ -34,6 +34,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.user_activity);
         Intent intent0 = getIntent();
         email = intent0.getStringExtra("email");
+        userId = getIntent().getIntExtra("id", -2);
 
         nameBox = findViewById(R.id.name);
         vremaBox = findViewById(R.id.vrema);
@@ -91,6 +92,7 @@ public class UserActivity extends AppCompatActivity {
         Intent intent0 = new Intent(this, Main_Menu.class);
         intent0.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent0.putExtra("email", email);
+        intent0.putExtra("id", userId); // передаем id в intent0
         startActivity(intent0);
     }
 }

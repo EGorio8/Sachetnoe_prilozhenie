@@ -22,6 +22,7 @@ public class Upravlat extends AppCompatActivity {
     private EditText searchEditText;
     String status;
     public String fio;
+    public int userId;
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
@@ -55,6 +56,7 @@ public class Upravlat extends AppCompatActivity {
         String email = intent1.getStringExtra("email");
         status = intent1.getStringExtra("status");
         fio = intent1.getStringExtra("fio");
+        userId = getIntent().getIntExtra("id", -2);
 
         textEmail.setText(email);
 
@@ -92,6 +94,7 @@ public class Upravlat extends AppCompatActivity {
                         intent0.putExtra("email", textEmail.getText().toString());
                         intent0.putExtra("status", status);
                         intent0.putExtra("fio", fio);
+                        intent0.putExtra("id", userId); // передаем id в intent0
                         startActivity(intent0);
                     }
                 });
@@ -161,6 +164,7 @@ public class Upravlat extends AppCompatActivity {
                         intent0.putExtra("_id_mer", _id_mer);
                         intent0.putExtra("email", textEmail.getText().toString());
                         intent0.putExtra("fio", fio);
+                        intent0.putExtra("id", userId); // передаем id в intent0
                         startActivity(intent0);
                     }
                 });

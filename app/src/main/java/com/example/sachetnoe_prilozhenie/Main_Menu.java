@@ -17,6 +17,7 @@ public class Main_Menu extends AppCompatActivity {
     SimpleCursorAdapter userAdapter;
     String status;
     String fio;
+    public int userId;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,7 +34,7 @@ public class Main_Menu extends AppCompatActivity {
         String email = intent0.getStringExtra("email");
         status = intent0.getStringExtra("status");
         fio = intent0.getStringExtra("fio");
-        int userId = getIntent().getIntExtra("id", -2); // извлекаем значение id из intent
+        userId = getIntent().getIntExtra("id", -2); // извлекаем значение id из intent
         int[] colors = new int[]{
                 Color.parseColor("#202630"),
                 Color.parseColor("#202630"),};
@@ -94,20 +95,23 @@ public class Main_Menu extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        // закрываем курсор, если он не закрыт
+// закрываем курсор, если он не закрыт
         if (userCursor != null && !userCursor.isClosed()) {
             userCursor.close();
         }
 
-        //получаем данные из бд в виде курсора
+//открываем базу данных
+        db = databaseHelper.getReadableDatabase();
+
+//получаем данные из бд в виде курсора
         userCursor = db.rawQuery("select * from " + DatabaseHelper_Users_Merop.TABLE_M, null);
-        // определяем, какие столбцы из курсора будут выводиться в ListView
+// определяем, какие столбцы из курсора будут выводиться в ListView
         String[] headers = new String[]{DatabaseHelper_Users_Merop.COLUMN_NAME, DatabaseHelper_Users_Merop.COLUMN_VREMA, DatabaseHelper_Users_Merop.COLUMN_ORG, DatabaseHelper_Users_Merop.COLUMN_OPISANIE};
-        // создаем адаптер, передаем в него курсор
+// создаем адаптер, передаем в него курсор
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
         meropList.setAdapter(userAdapter);
-        // сбрасываем цвета фонов мероприятий
+// сбрасываем цвета фонов мероприятий
         for (int i = 0; i < meropList.getChildCount(); i++) {
             View child = meropList.getChildAt(i);
             child.setBackgroundColor(Color.TRANSPARENT);
@@ -129,13 +133,18 @@ public class Main_Menu extends AppCompatActivity {
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("status", status);
         intent1.putExtra("fio", fio);
+        intent1.putExtra("id", userId); // передаем id в intent0
         startActivity(intent1);
     }
 
-    @Override public void onDestroy() {
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         // Закрываем подключение и курсор
-        db.close(); if (userCursor != null) {
+        if (db != null) {
+            db.close();
+        }
+        if (userCursor != null) {
             userCursor.close();
         }
     }
