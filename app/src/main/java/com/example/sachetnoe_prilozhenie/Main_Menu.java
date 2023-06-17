@@ -1,6 +1,8 @@
 package com.example.sachetnoe_prilozhenie;
 
-import android.annotation.SuppressLint; import android.content.ContentValues; import android.content.Intent; import android.database.Cursor; import android.database.sqlite.SQLiteDatabase; import android.os.Build; import android.os.Bundle; import android.view.View; import android.widget.AdapterView; import android.widget.Button; import android.widget.ListView; import android.widget.SimpleCursorAdapter; import android.widget.TextView; import android.widget.Toast;
+import android.annotation.SuppressLint; import android.content.ContentValues; import android.content.Intent; import android.database.Cursor; import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.Build; import android.os.Bundle; import android.view.View; import android.widget.AdapterView; import android.widget.Button; import android.widget.ListView; import android.widget.SimpleCursorAdapter; import android.widget.TextView; import android.widget.Toast;
 
 import androidx.annotation.RequiresApi; import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +32,9 @@ public class Main_Menu extends AppCompatActivity {
         String email = intent0.getStringExtra("email");
         status = intent0.getStringExtra("status");
         int userId = getIntent().getIntExtra("id", -1); // извлекаем значение id из intent
+        int[] colors = new int[]{
+                Color.parseColor("#202630"),
+                Color.parseColor("#202630"),};
 
         textEmail.setText(email);
 
@@ -39,39 +44,45 @@ public class Main_Menu extends AppCompatActivity {
             ButtonControl.setVisibility(View.VISIBLE); // показать кнопку
         }
 
-        meropList.setOnItemClickListener(new AdapterView.OnItemClickListener() { @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) { int meropId = (int) id;
+        meropList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int meropId = (int) id;
 
-            // проверяем, есть ли уже в таблице заявок на мероприятие запись с таким пользователем и мероприятием
-            String query = "SELECT * FROM " + DatabaseHelper_Users_Merop.TABLE_Z + " WHERE " +
-                    DatabaseHelper_Users_Merop.COLUMN_ID_USER_Z + "=" + userId + " AND " +
-                    DatabaseHelper_Users_Merop.COLUMN_ID_MER_Z + "=" + meropId;
-            SQLiteDatabase db = databaseHelper.getWritableDatabase(); // получаем базу данных для записи
-            Cursor cursor = null;
-            try {
-                cursor = db.rawQuery(query, null);
-                if (cursor.getCount() > 0) {
-                    // если такая запись есть, выводим сообщение об ошибке
-                    Toast.makeText(Main_Menu.this, "Вы уже зарегистрированы на это мероприятие", Toast.LENGTH_SHORT).show();
-                } else {
-                    // сохраняем данные в таблицу заявок на мероприятие
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(DatabaseHelper_Users_Merop.COLUMN_ID_USER_Z, userId);
-                    contentValues.put(DatabaseHelper_Users_Merop.COLUMN_ID_MER_Z, meropId);
-                    long result = db.insert(DatabaseHelper_Users_Merop.TABLE_Z, null, contentValues);
-                    if (result == -1) {
-                        Toast.makeText(Main_Menu.this, "Ошибка при сохранении данных", Toast.LENGTH_SHORT).show();
+                // изменяем цвет фона выбранного мероприятия
+                view.setBackgroundColor(colors[position % colors.length]);
+
+                // остальной код обработки нажатия на мероприятие
+                String query = "SELECT * FROM " + DatabaseHelper_Users_Merop.TABLE_Z + " WHERE " +
+                        DatabaseHelper_Users_Merop.COLUMN_ID_USER_Z + "=" + userId + " AND " +
+                        DatabaseHelper_Users_Merop.COLUMN_ID_MER_Z + "=" + meropId;
+                SQLiteDatabase db = databaseHelper.getWritableDatabase();
+                Cursor cursor = null;
+                try {
+                    cursor = db.rawQuery(query, null);
+                    if (cursor.getCount() > 0) {
+                        Toast.makeText(Main_Menu.this, "Вы уже зарегистрированы на это мероприятие", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(Main_Menu.this, "Заявка на мероприятие сохранена", Toast.LENGTH_SHORT).show();
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put(DatabaseHelper_Users_Merop.COLUMN_ID_USER_Z, userId);
+                        contentValues.put(DatabaseHelper_Users_Merop.COLUMN_ID_MER_Z, meropId);
+                        long result = db.insert(DatabaseHelper_Users_Merop.TABLE_Z, null, contentValues);
+                        if (result == -1) {
+                            Toast.makeText(Main_Menu.this, "Ошибка при сохранении данных", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Main_Menu.this, "Заявка на мероприятие сохранена", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
+                    db.close();
                 }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
-                db.close();
             }
-        }
         });
+
+
         databaseHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
         db = databaseHelper.getReadableDatabase(); // инициализируем базу данных в onCreate()
     }
@@ -94,6 +105,11 @@ public class Main_Menu extends AppCompatActivity {
         userAdapter = new SimpleCursorAdapter(this, android.R.layout.two_line_list_item,
                 userCursor, headers, new int[]{android.R.id.text1, android.R.id.text2}, 0);
         meropList.setAdapter(userAdapter);
+        // сбрасываем цвета фонов мероприятий
+        for (int i = 0; i < meropList.getChildCount(); i++) {
+            View child = meropList.getChildAt(i);
+            child.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 
     // добавляем метод для кнопки "На главную"
