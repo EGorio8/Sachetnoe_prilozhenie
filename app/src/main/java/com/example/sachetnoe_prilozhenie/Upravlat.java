@@ -23,7 +23,7 @@ public class Upravlat extends AppCompatActivity {
     String status;
     public String fio;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

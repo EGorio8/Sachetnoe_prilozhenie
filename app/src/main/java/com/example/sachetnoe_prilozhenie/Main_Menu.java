@@ -33,7 +33,7 @@ public class Main_Menu extends AppCompatActivity {
         String email = intent0.getStringExtra("email");
         status = intent0.getStringExtra("status");
         fio = intent0.getStringExtra("fio");
-        int userId = getIntent().getIntExtra("id", -1); // извлекаем значение id из intent
+        int userId = getIntent().getIntExtra("id", -2); // извлекаем значение id из intent
         int[] colors = new int[]{
                 Color.parseColor("#202630"),
                 Color.parseColor("#202630"),};

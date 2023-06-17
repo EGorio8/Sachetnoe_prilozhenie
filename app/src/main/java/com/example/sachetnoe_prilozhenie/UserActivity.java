@@ -21,6 +21,7 @@ public class UserActivity extends AppCompatActivity {
     MultiAutoCompleteTextView opisanieBox;
     Button delButton;
     Button saveButton;
+    public String email;
 
     DatabaseHelper_Users_Merop sqlHelper;
     SQLiteDatabase db;
@@ -31,6 +32,8 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_activity);
+        Intent intent0 = getIntent();
+        email = intent0.getStringExtra("email");
 
         nameBox = findViewById(R.id.name);
         vremaBox = findViewById(R.id.vrema);
@@ -69,7 +72,6 @@ public class UserActivity extends AppCompatActivity {
         cv.put(DatabaseHelper_Users_Merop.COLUMN_VREMA, vremaBox.getText().toString());
         cv.put(DatabaseHelper_Users_Merop.COLUMN_ORG, orgBox.getText().toString());
         cv.put(DatabaseHelper_Users_Merop.COLUMN_OPISANIE, opisanieBox.getText().toString());
-        //cv.put(DatabaseHelper.COLUMN_VREMA, Integer.parseInt(vremaBox.getText().toString()));
 
         if (userId > 0) {
             db.update(DatabaseHelper_Users_Merop.TABLE_M, cv, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=" + userId, null);
@@ -86,8 +88,9 @@ public class UserActivity extends AppCompatActivity {
         // закрываем подключение
         db.close();
         // переход к главной activity
-        Intent intent = new Intent(this, Main_Menu.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
+        Intent intent0 = new Intent(this, Main_Menu.class);
+        intent0.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent0.putExtra("email", email);
+        startActivity(intent0);
     }
 }
