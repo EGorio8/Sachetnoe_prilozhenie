@@ -20,6 +20,7 @@ public class Upravlat extends AppCompatActivity {
 
     private LinearLayout layout;
     private EditText searchEditText;
+    String status;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -53,6 +54,7 @@ public class Upravlat extends AppCompatActivity {
         Cursor cursor = dbHelper.getData();
         Intent intent1 = getIntent();
         String email = intent1.getStringExtra("email");
+        status = intent1.getStringExtra("status");
 
         textEmail.setText(email);
 
@@ -95,6 +97,7 @@ public class Upravlat extends AppCompatActivity {
                     Intent intent0 = new Intent(getApplicationContext(), Upravlat_Red.class);
                     intent0.putExtra("_id_mer", _id_mer);
                     intent0.putExtra("email", textEmail.getText().toString());
+                    intent0.putExtra("status", status);
                     startActivity(intent0);
                 }
             });

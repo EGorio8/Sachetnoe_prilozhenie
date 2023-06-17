@@ -47,7 +47,7 @@ public class Autor_Regis extends AppCompatActivity {
                 Intent intent = new Intent(this, Main_Menu.class); // переход на экран главного меню
                 startActivity(intent); // запуск новой активности
                 finish(); // закрываем текущую активити
-                Intent intent0 = new Intent(this, Main_Menu.class);
+                Intent intent0 = new Intent(this, My_World.class);
                 intent0.putExtra("email", emailEditText.getText().toString());
                 startActivity(intent0); // запуск новой активности My_World
             } else {

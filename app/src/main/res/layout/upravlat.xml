@@ -122,6 +122,7 @@
         android:ems="10"
         android:hint="Название мероприятия"
         android:inputType="text"
+        android:textColor="#FEFEFE"
         android:textColorHint="#51FEFEFE"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
