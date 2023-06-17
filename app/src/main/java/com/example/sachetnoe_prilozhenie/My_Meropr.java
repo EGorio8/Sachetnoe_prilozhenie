@@ -13,10 +13,6 @@ public class My_Meropr extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_meropr);
-
-
-
-
     }
 
     public void onBackPressed(View view) {
