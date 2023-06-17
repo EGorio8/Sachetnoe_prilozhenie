@@ -14,6 +14,7 @@ public class My_Sobit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_sobit);
     }
+    
     public void onBackPressed(View view) {
         super.onBackPressed();
     }
