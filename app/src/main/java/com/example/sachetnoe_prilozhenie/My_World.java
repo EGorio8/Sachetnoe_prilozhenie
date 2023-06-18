@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint; import android.content.Intent; import android.database.Cursor; import android.os.Bundle; import android.view.View; import android.widget.ImageView; import android.widget.TextView; import android.widget.Toast;
 
-public class UserProfileScreen extends AppCompatActivity {
+public class My_World extends AppCompatActivity {
 
     private TextView textFio, textEmail, textStatus, textPol, textReating;
     private ImageView ImageIcon;
