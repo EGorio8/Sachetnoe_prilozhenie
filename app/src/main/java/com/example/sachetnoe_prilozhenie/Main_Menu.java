@@ -59,7 +59,7 @@ public class Main_Menu extends AppCompatActivity {
                 String query = "SELECT * FROM " + DatabaseHelper_Users_Merop.TABLE_Z + " WHERE " +
                         DatabaseHelper_Users_Merop.COLUMN_ID_USER_Z + "=" + userId + " AND " +
                         DatabaseHelper_Users_Merop.COLUMN_ID_MER_Z + "=" + meropId; // Переменная для запроса к БД
-                SQLiteDatabase db = databaseHelper.getWritableDatabase(); // Получаем экземпляр с в режиме "для изменения"
+                SQLiteDatabase db = databaseHelper.getWritableDatabase(); // Получаем экземпляр БД в режиме "для изменения"
                 Cursor cursor = null; // Создаем объект для получения доступа к результатам запроса в базе данных
                 try { // Блок кода для сохранения пользовательской заявки на мероприятие в БД
                     cursor = db.rawQuery(query, null); //Получаем данные от запроса к БД 
