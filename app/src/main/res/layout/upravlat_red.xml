@@ -21,21 +21,17 @@
         app:srcCompat="@android:drawable/screen_background_light_transparent" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/Name"
         android:layout_width="201dp"
         android:layout_height="61dp"
         android:fontFamily="sans-serif"
-        android:text="&quot;Название мероприятия&quot;"
+        android:gravity="right"
         android:textAllCaps="true"
         android:textColor="#1D2642"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.967"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button22"

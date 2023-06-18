@@ -37,7 +37,7 @@ public class Main_Menu extends AppCompatActivity {
         userId = getIntent().getIntExtra("id", -2);
         int[] colors = new int[]{
                 Color.parseColor("#202630"),
-                Color.parseColor("#202630"),};
+                Color.parseColor("#313741"),};
 
         textEmail.setText(email);
 

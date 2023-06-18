@@ -26,6 +26,8 @@ public class Upravlat_Red extends AppCompatActivity {
     private LinearLayout layout2;
     private int _id_mer;
     private int userId;
+    TextView textName;
+     public String Name;
 
     @SuppressLint({"MissingInflatedId", "Range"})
     @Override
@@ -34,6 +36,7 @@ public class Upravlat_Red extends AppCompatActivity {
         setContentView(R.layout.upravlat_red);
 
         textEmail = findViewById(R.id.EmailText);
+        textName = findViewById(R.id.Name);
 
         Intent intent0 = getIntent();
         String email = intent0.getStringExtra("email");
@@ -64,11 +67,23 @@ public class Upravlat_Red extends AppCompatActivity {
                 Cursor cursor2 = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_U, columns, selection, selectionArgs, null, null, null);
                 if (cursor2.moveToFirst()) {
                     int columnIndex = cursor2.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_FIO);
-                    if (columnIndex > -1) {
+                    if (columnIndex > -1)
+                    {
                         fio_zav = cursor2.getString(columnIndex);
                     }
                 }
-                cursor2.close();
+
+            String[] columns3 = {DatabaseHelper_Users_Merop.COLUMN_NAME};
+            String selection3 = DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?";
+            String[] selectionArgs3 = { String.valueOf(id_mer) };
+            Cursor cursor4 = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_M, columns3, selection3, selectionArgs3, null, null, null);
+            if (cursor4.moveToFirst()) {
+                int column1Index = cursor4.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME);
+                if (column1Index > -1) {
+                    Name = cursor4.getString(column1Index);
+                    textName.setText(Name);
+                }
+        }
 
                 // Создание нового TextView
                 TextView textView = new TextView(this);
