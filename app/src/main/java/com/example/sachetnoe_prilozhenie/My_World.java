@@ -10,6 +10,7 @@ public class My_World extends AppCompatActivity {
     private ImageView ImageIcon;
     private DatabaseHelper_Users_Merop dbHelper;
     private int id;
+    public int userId;
 
     @SuppressLint({"Range", "CutPasteId"})
     @Override
@@ -36,6 +37,7 @@ public class My_World extends AppCompatActivity {
     private void showUserData() {
         Intent intent1 = getIntent();
         String email = intent1.getStringExtra("email");
+        userId = intent1.getIntExtra("id", -2);
         if (email != null) {
             String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID};
             String selection = DatabaseHelper_Users_Merop.COLUMN_EMAIL + "=?";
@@ -104,7 +106,7 @@ public class My_World extends AppCompatActivity {
         Intent intent0 = new Intent(this, Main_Menu.class);
         intent0.putExtra("email", textEmail.getText().toString());
         intent0.putExtra("status", textStatus.getText().toString());
-        intent0.putExtra("id", id); // передаем id в intent0
+        intent0.putExtra("id", id);
         intent0.putExtra("fio", textFio.getText().toString());
         startActivity(intent0);
     }

@@ -22,11 +22,12 @@ public class UserActivity extends AppCompatActivity {
     Button delButton;
     Button saveButton;
     public String email;
+    public int userId;
 
     DatabaseHelper_Users_Merop sqlHelper;
     SQLiteDatabase db;
     Cursor userCursor;
-    long userId=0;
+    long Id=0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.user_activity);
         Intent intent0 = getIntent();
         email = intent0.getStringExtra("email");
-        userId = getIntent().getIntExtra("id", -2);
+        userId = intent0.getIntExtra("id", -2); // извлекаем значение id из intent
 
         nameBox = findViewById(R.id.name);
         vremaBox = findViewById(R.id.vrema);
@@ -48,13 +49,13 @@ public class UserActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            userId = extras.getLong("id");
+            Id = extras.getLong("id");
         }
         // если 0, то добавление
-        if (userId > 0) {
+        if (Id > 0) {
             // получаем элемент по id из бд
             userCursor = db.rawQuery("select * from " + DatabaseHelper_Users_Merop.TABLE_M + " where " +
-                    DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
+                    DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(Id)});
             userCursor.moveToFirst();
             nameBox.setText(userCursor.getString(1));
             vremaBox.setText(userCursor.getString(2));
@@ -74,15 +75,15 @@ public class UserActivity extends AppCompatActivity {
         cv.put(DatabaseHelper_Users_Merop.COLUMN_ORG, orgBox.getText().toString());
         cv.put(DatabaseHelper_Users_Merop.COLUMN_OPISANIE, opisanieBox.getText().toString());
 
-        if (userId > 0) {
-            db.update(DatabaseHelper_Users_Merop.TABLE_M, cv, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=" + userId, null);
+        if (Id > 0) {
+            db.update(DatabaseHelper_Users_Merop.TABLE_M, cv, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=" + Id, null);
         } else {
             db.insert(DatabaseHelper_Users_Merop.TABLE_M, null, cv);
         }
         goHome();
     }
     public void delete(View view){
-        db.delete(DatabaseHelper_Users_Merop.TABLE_M, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(userId)});
+        db.delete(DatabaseHelper_Users_Merop.TABLE_M, DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?", new String[]{String.valueOf(Id)});
         goHome();
     }
     private void goHome(){

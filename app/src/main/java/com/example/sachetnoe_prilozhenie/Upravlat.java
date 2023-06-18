@@ -56,7 +56,7 @@ public class Upravlat extends AppCompatActivity {
         String email = intent1.getStringExtra("email");
         status = intent1.getStringExtra("status");
         fio = intent1.getStringExtra("fio");
-        userId = getIntent().getIntExtra("id", -2);
+        userId = intent1.getIntExtra("id", -2); // извлекаем значение id из intent
 
         textEmail.setText(email);
 
@@ -188,6 +188,7 @@ public class Upravlat extends AppCompatActivity {
         Intent intent0 = new Intent(this, Main_Menu.class);
         intent0.putExtra("email", textEmail.getText().toString());
         intent0.putExtra("fio", fio);
+        intent0.putExtra("id", userId); // передаем id в intent0
         startActivity(intent0);
     }
 }

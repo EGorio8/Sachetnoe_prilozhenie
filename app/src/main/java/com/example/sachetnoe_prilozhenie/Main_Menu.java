@@ -34,7 +34,7 @@ public class Main_Menu extends AppCompatActivity {
         String email = intent0.getStringExtra("email");
         status = intent0.getStringExtra("status");
         fio = intent0.getStringExtra("fio");
-        userId = getIntent().getIntExtra("id", -2); // извлекаем значение id из intent
+        userId = getIntent().getIntExtra("id", -2);
         int[] colors = new int[]{
                 Color.parseColor("#202630"),
                 Color.parseColor("#202630"),};
@@ -124,6 +124,7 @@ public class Main_Menu extends AppCompatActivity {
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("status", status);
         intent1.putExtra("fio", fio);
+        intent1.putExtra("id", userId);
         startActivity(intent1);
     }
 
@@ -133,7 +134,7 @@ public class Main_Menu extends AppCompatActivity {
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("status", status);
         intent1.putExtra("fio", fio);
-        intent1.putExtra("id", userId); // передаем id в intent0
+        intent1.putExtra("id", userId);
         startActivity(intent1);
     }
 
