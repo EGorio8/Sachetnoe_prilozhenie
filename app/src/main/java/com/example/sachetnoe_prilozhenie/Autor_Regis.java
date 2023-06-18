@@ -31,7 +31,7 @@ public class Autor_Regis extends AppCompatActivity {
     // Метод для выполнения входа в приложение(код, выполняющийся по нажатию на кнопку "Войти")
     public void enter(View view) {
 
-        String email = emailEditText.getText().toString().trim(); // Получаем значение электронной почты пользователя из соответствующего текстового поля
+        String email = emailEditText.getText().toString().trim(); // Получаем значение логина пользователя из соответствующего текстового поля
         String password = passwordEditText.getText().toString().trim(); // Получаем значение пароля пользователя из соответствующего текстового поля
 
         if(!email.isEmpty() && !password.isEmpty()) { // Проверка полей логина и пароля на то, что они не пустые
