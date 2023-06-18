@@ -49,8 +49,8 @@ public class Autor_Regis extends AppCompatActivity {
                 Intent intent = new Intent(this, Main_Menu.class); // Переход на экран главного меню
                 startActivity(intent); // Запуск новой активности
                 finish(); // Закрываем текущую активности
-                Intent intent0 = new Intent(this, My_World.class); // Переход на экран ???
-                intent0.putExtra("email", emailEditText.getText().toString()); // Добавляет данные почты для экрана ???
+                Intent intent0 = new Intent(this, My_World.class); // Переход на экран личного кабинета
+                intent0.putExtra("email", emailEditText.getText().toString()); // Добавляет данные почты для экрана личного кабинета
                 startActivity(intent0); // Запуск новой активности My_World
             } else {
                 Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
@@ -67,8 +67,8 @@ public class Autor_Regis extends AppCompatActivity {
         startActivity(intent); // Запуск новой активности
     }
 
-    // Если приложение вернется к этой активити из другой, например, когда пользователь нажмет на кнопку "назад"
-    @Override
+    // Если приложение вернется к этой активности из другой, например, когда пользователь нажмет на кнопку "назад"
+    @Override // Переопределение родительского метода
     protected void onResume() {
         super.onResume(); // Возобновляем активность
 
