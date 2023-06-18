@@ -47,11 +47,11 @@ public class Autor_Regis extends AppCompatActivity {
             if(cursor != null && cursor.getCount() > 0) { // Проверка наличия найденных записей в таблице пользователей
                 Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show(); // Вывод сообщения об удачном входе в аккаунт
                 Intent intent = new Intent(this, Main_Menu.class); // Переход на экран главного меню
-                startActivity(intent); // Запуск новой активности Main_Menu
+                startActivity(intent); // Запуск новой активности в окне главного меню
                 finish(); // Закрываем текущую активности
                 Intent intent0 = new Intent(this, My_World.class); // Переход на экран личного кабинета
                 intent0.putExtra("email", emailEditText.getText().toString()); // Добавляет данные почты для экрана личного кабинета
-                startActivity(intent0); // Запуск новой активности My_World
+                startActivity(intent0); // Запуск новой активности в окне личного кабинета
             } else {
                 Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
             }
@@ -64,7 +64,7 @@ public class Autor_Regis extends AppCompatActivity {
     // Метод, вызываемый при нажатии на кнопку регистрации
     public void reg(View view) {
         Intent intent = new Intent(this, Registration.class); // Переход на экран регистрации нового пользователя
-        startActivity(intent); // Запуск новой активности
+        startActivity(intent); // Запуск новой активности в окне регистрации
     }
 
     // Если приложение вернется к этой активности из другой, например, когда пользователь нажмет на кнопку "назад"
