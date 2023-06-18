@@ -32,7 +32,7 @@ public class UserActivity extends AppCompatActivity {
     @SuppressLint("MissingInflatedId") // Заглушка для предупреждения android-studio
     @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);  // Создание активности
+        super.onCreate(savedInstanceState); // Создание активности
         setContentView(R.layout.user_activity);  // Устанавливаем макет пользовательского интерфейса "user_activity" для этой активности
         Intent intent0 = getIntent(); // Создаём объект для передачи данных между классами
         email = intent0.getStringExtra("email");  // Получаем значение логина
