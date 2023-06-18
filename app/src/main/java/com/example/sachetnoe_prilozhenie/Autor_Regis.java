@@ -48,18 +48,19 @@ public class Autor_Regis extends AppCompatActivity {
                 Intent intent = new Intent(this, Main_Menu.class); // Переход на экран главного меню
                 startActivity(intent); // Запуск новой активности
                 finish(); // Закрываем текущую активити
-                Intent intent0 = new Intent(this, My_World.class);
-                intent0.putExtra("email", emailEditText.getText().toString());
+                Intent intent0 = new Intent(this, My_World.class); // Переход на экран личного кабинета
+                intent0.putExtra("email", emailEditText.getText().toString()); // Добавляет данные почты для экрана личного кабинета
                 startActivity(intent0); // Запуск новой активности My_World
             } else {
-                Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Неверный логин или пароль", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
             }
 
         } else {
-            Toast.makeText(this, "Пожалуйста, введите логин и пароль", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Пожалуйста, введите логин и пароль", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
         }
     }
 
+    // Метод, вызываемый при нажатии на кнопку регистрации
     public void reg(View view) {
         Intent intent = new Intent(this, Registration.class); // Переход на экран регистрации нового пользователя
         startActivity(intent); // Запуск новой активности
@@ -68,16 +69,16 @@ public class Autor_Regis extends AppCompatActivity {
     // Если приложение вернется к этой активити из другой, например, когда пользователь нажмет на кнопку "назад"
     @Override
     protected void onResume() {
-        super.onResume();
+        super.onResume(); // Возобновляем активность
 
-        emailEditText.setText(""); // Очищаем поля ввода логина и пароля
-        passwordEditText.setText("");
+        emailEditText.setText(""); // Очищаем поля ввода логина
+        passwordEditText.setText(""); // Очищаем поля ввода пароля
     }
 
     // Закрываем базу данных при уничтожении активности
-    @Override
+    @Override // Переопределение родительского метода
     protected void onDestroy() {
-        super.onDestroy();
-        dbHelper.close(); // Закрытие базы данных
+        super.onDestroy(); // Закрываем активити
+        dbHelper.close(); // Закрытие соединения с базой данных для освобождения ресурсов и избежания потенциальных проблем с безопасностью.
     }
 }
