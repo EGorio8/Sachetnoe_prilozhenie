@@ -138,4 +138,10 @@ public class DatabaseHelper_Users_Merop extends SQLiteOpenHelper {
         db.close();
         return count;
     }
+    /* Метод удаления записи по id */
+    public void deleteMer(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_M, COLUMN_ID_MER + " = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 }

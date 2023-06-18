@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,12 +18,13 @@ import android.widget.Toast;
 public class Upravlat_Red extends AppCompatActivity {
 
     TextView textEmail;
+    private DatabaseHelper_Users_Merop dbHelper;
     public String fio_zav;
     public String fio_uch;
     public String fio;
     private LinearLayout layout;
     private LinearLayout layout2;
-    private int _id_mer;
+    public int _id_mer;
     private int userId;
     TextView textName;
      public String Name;
@@ -72,7 +72,6 @@ public class Upravlat_Red extends AppCompatActivity {
                         fio_zav = cursor2.getString(columnIndex);
                     }
                 }
-
             String[] columns3 = {DatabaseHelper_Users_Merop.COLUMN_NAME};
             String selection3 = DatabaseHelper_Users_Merop.COLUMN_ID_MER + "=?";
             String[] selectionArgs3 = { String.valueOf(id_mer) };
@@ -84,7 +83,6 @@ public class Upravlat_Red extends AppCompatActivity {
                     textName.setText(Name);
                 }
         }
-
                 // Создание нового TextView
                 TextView textView = new TextView(this);
                 textView.setText(fio_zav);
@@ -99,7 +97,6 @@ public class Upravlat_Red extends AppCompatActivity {
                 textView.setLayoutParams(params);
                 // Добавление TextView в родительский Layout
                 layout2.addView(textView);
-
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) { String query = "SELECT * FROM " +
                             DatabaseHelper_Users_Merop.TABLE_UCHAV + " WHERE " +
@@ -164,18 +161,46 @@ public class Upravlat_Red extends AppCompatActivity {
                 layout.addView(textView2);
             }
         }
-
         // Закрытие курсора и базы данных
         cursor.close();
         cursor3.close();
         dbHelper.close();
     }
 
+    @SuppressLint("Range")
+    public void delete(View view) {
+        dbHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
+        Cursor cursor = dbHelper.getData();
+
+        while (cursor.moveToNext()) {
+            Name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME));
+            if (Name != null) {
+                String[] columns = {DatabaseHelper_Users_Merop.COLUMN_ID_MER};
+                String selection = DatabaseHelper_Users_Merop.COLUMN_NAME + "=?";
+                String[] selectionArgs = {Name};
+                Cursor cursor2 = dbHelper.query(DatabaseHelper_Users_Merop.TABLE_M, columns, selection, selectionArgs, null, null, null);
+                if (cursor2.moveToFirst()) {
+                    int id_mer = cursor2.getInt(cursor2.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_ID_MER)); // получаем id текущей записи
+                    if (id_mer == _id_mer) { // сравниваем с искомым id
+                        dbHelper.deleteMer(_id_mer); //удаляем запись с использованием метода deleteMer
+                        break; // выходим из цикла, т.к. нужная запись уже удалена
+                    }
+                }
+            }
+        }
+
+        Intent intent1 = new Intent(this, Upravlat.class);
+        intent1.putExtra("email", textEmail.getText().toString());
+        intent1.putExtra("fio", fio);
+        intent1.putExtra("id", userId);
+        startActivity(intent1);
+    }
+
     public void uprav(View view) {
         Intent intent1 = new Intent(this, Upravlat.class);
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("fio", fio);
-        intent1.putExtra("id", userId); // передаем id в intent0
+        intent1.putExtra("id", userId);
 
         startActivity(intent1);
     }
