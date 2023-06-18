@@ -68,7 +68,7 @@ public class Autor_Regis extends AppCompatActivity {
     }
 
     // Если приложение вернется к этой активити из другой, например, когда пользователь нажмет на кнопку "назад"
-    @Override
+    @Override // Переопределение родительского метода
     protected void onResume() {
         super.onResume(); // Возобновляем активность
 
