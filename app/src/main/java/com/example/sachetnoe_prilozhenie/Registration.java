@@ -16,51 +16,46 @@ import android.widget.Toast;
 // Создание класса для регистрации пользователя
 public class Registration extends AppCompatActivity {
 
-    // Создание переменных для забора значений из полей ввода
-    private EditText fioEditText, emailEditText, passwordEditText;
-    private CheckBox statusCheckBox;
-    private Switch PolSwitch;
-    private DatabaseHelper_Users_Merop dbHelper;
+    private EditText fioEditText, emailEditText, passwordEditText; // Переменные для ФИО, логина и пароля
+    private CheckBox statusCheckBox; // Переменная для статуса
+    private Switch PolSwitch; // Переменная дла пола
+    private DatabaseHelper_Users_Merop dbHelper; // Объект для создания и управления базой данных SQLite
 
-    @SuppressLint("MissingInflatedId")
-    @Override
+    @SuppressLint("MissingInflatedId") // Заглушка для предупреждения android-studio
+    @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.registration);
+        super.onCreate(savedInstanceState); // Создание активности
+        setContentView(R.layout.registration); // Устанавливаем макет пользовательского интерфейса "user_activity" для этой активности
 
-        dbHelper = new DatabaseHelper_Users_Merop(this);
+        dbHelper = new DatabaseHelper_Users_Merop(this); // Создание объекта dbHelper класса DatabaseHelper_Users_Merop
 
         // Получаем соответствующие формы ввода из XML 
-        fioEditText = findViewById(R.id.org);
-        emailEditText = findViewById(R.id.fioText);
-        passwordEditText = findViewById(R.id.password);
-        statusCheckBox = findViewById(R.id.statusCheckBox);
-        PolSwitch = findViewById(R.id.polSwitch);
+        fioEditText = findViewById(R.id.org); ; // Связываем переменную ФИО с текстовым полем для ввода ФИО
+        emailEditText = findViewById(R.id.fioText); ; // Связываем переменную логина с текстовым полем для ввода логина
+        passwordEditText = findViewById(R.id.password); ; // Связываем переменную пароля с текстовым полем для ввода пароля
+        statusCheckBox = findViewById(R.id.statusCheckBox); // Связываем переменную статуса полем для ввода статуса
+        PolSwitch = findViewById(R.id.polSwitch); // Связываем переменную пола полем для ввода пола
 
-        // Мужской пол по умолчанию
-        PolSwitch.setChecked(false);
+        PolSwitch.setChecked(false); // Мужской пол по умолчанию
     }
 
     public void savereg(View view) {
-       // Забор значений из полей для ввода
-        String fio = fioEditText.getText().toString().trim();
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String status = "";
-        int reating = 0;
+        String fio = fioEditText.getText().toString().trim(); // Получаем значение ФИО пользователя из соответствующего текстового поля
+        String email = emailEditText.getText().toString().trim(); // Получаем значение логина пользователя из соответствующего текстового поля
+        String password = passwordEditText.getText().toString().trim(); // Получаем значение пароля пользователя из соответствующего текстового поля
+        String status = ""; // Оставляем статус пустым
+        int reating = 0; // Задаём изначальное количество рейтинга пользователя
 
-        // Проверка заполненности чекбокса для присвоения статуса регистрируемому 
-        if (statusCheckBox.isChecked()) {
-            status = "Организатор";
+        if (statusCheckBox.isChecked()) { // Проверяем состояние флажка статуса
+            status = "Организатор"; // Присвоение статуса согласно значению флажка
         } else {
-            status = "Волонтёр";
+            status = "Волонтёр"; // Присвоение статуса согласно значению флажка
         }
-        // Проверка тоггл-кнопки для присвоения пола регистрируемому
-        String pol = "";
-        if (PolSwitch.isChecked()) {
-            pol = "Женский";
+        String pol = ""; // Переменная пола пользователя
+        if (PolSwitch.isChecked()) { // Проверяем состояние тоггл-кнопки пола
+            pol = "Женский"; // Присвоение статуса согласно значению кнопки
         } else {
-            pol = "Мужской";
+            pol = "Мужской";// Присвоение статуса согласно значению кнопки
         }
 
         // Проверяем, что все текстовые поля заполнены
@@ -85,30 +80,24 @@ public class Registration extends AppCompatActivity {
 
             // Добавляем нового пользователя в базу данных
             boolean success = dbHelper.insertData(email, password, fio, status, pol, reating);
-            // Если регистрация прошла успешно, уведомляем об этом пользователя и переводим его в личный кабинет 
-            if (success) {
-                Toast.makeText(this, "Пользователь зарегистрирован", Toast.LENGTH_SHORT).show();
-                
-                // Переходим на экран личного кабинета
-                Intent intent = new Intent(this, Autor_Regis.class);
+            if (success) { // Если регистрация прошла успешно, то
+                Toast.makeText(this, "Пользователь зарегистрирован", Toast.LENGTH_SHORT).show(); //  Уведомляем об этом пользователя
+                Intent intent = new Intent(this, Autor_Regis.class); // Переходим на экран личного кабинета
                 intent.putExtra("email", email);
                 startActivity(intent);
                 finish();
-            
-            // Иначе, уведомляем о неудаче 
             } else {
-                Toast.makeText(this, "Ошибка при регистрации пользователя", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ошибка при регистрации пользователя", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
             }
-            // Просим регистрируемого дозаполнить поля
         } else {
-            Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show(); // Вывод сообщения об ошибке
         }
     }
 
     // Закрываем базу данных при уничтожении активности
-    @Override
+    @Override  // Переопределение родительского метода
     protected void onDestroy() {
-        super.onDestroy();
-        dbHelper.close();
+        super.onDestroy(); // Закрываем активность
+        dbHelper.close(); // Закрываем соединения с базой данных для освобождения ресурсов и избежания потенциальных проблем с безопасностью
     }
 }
