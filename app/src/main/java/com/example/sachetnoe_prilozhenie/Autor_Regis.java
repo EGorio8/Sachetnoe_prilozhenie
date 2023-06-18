@@ -47,7 +47,7 @@ public class Autor_Regis extends AppCompatActivity {
             if(cursor != null && cursor.getCount() > 0) { // Проверка наличия найденных записей в таблице пользователей
                 Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show(); // Вывод сообщения об удачном входе в аккаунт
                 Intent intent = new Intent(this, Main_Menu.class); // Переход на экран главного меню
-                startActivity(intent); // Запуск новой активности
+                startActivity(intent); // Запуск новой активности Main_Menu
                 finish(); // Закрываем текущую активности
                 Intent intent0 = new Intent(this, My_World.class); // Переход на экран личного кабинета
                 intent0.putExtra("email", emailEditText.getText().toString()); // Добавляет данные почты для экрана личного кабинета
