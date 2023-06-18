@@ -9,13 +9,13 @@ import android.widget.Button;
 
 public class My_Sobit extends AppCompatActivity {
 
-    @Override
+    @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_sobit);
+        super.onCreate(savedInstanceState); // Создание активности
+        setContentView(R.layout.my_sobit); // Устанавливаем макет пользовательского интерфейса "my_sobit" для этой активности
     }
     
-    public void onBackPressed(View view) {
-        super.onBackPressed();
+    public void onBackPressed(View view) { // Создаём метод для обработки события нажатия кнопки возвращения на предыдущую активность
+        super.onBackPressed(); // Возвращаемся к предыдущей активности
     }
 }
