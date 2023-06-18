@@ -30,7 +30,7 @@ public class UserActivity extends AppCompatActivity {
     long Id = 0; // Переменная для хранения Id строки в базе данных
     
     @SuppressLint("MissingInflatedId") // Заглушка для предупреждения android-studio
-    @Override  // Переопределение родительского метода
+    @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);  // Создание активности
         setContentView(R.layout.user_activity);  // Устанавливаем макет пользовательского интерфейса "user_activity" для этой активности
