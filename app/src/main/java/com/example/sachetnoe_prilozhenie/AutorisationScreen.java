@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 // Класс для авторизации пользователей
-public class Autor_Regis extends AppCompatActivity {
+public class AutorisationScreen extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText; // Создание переменных под логин и пароль пользователя
     private DatabaseHelper_Users_Merop dbHelper; // Создание переменной под БД
