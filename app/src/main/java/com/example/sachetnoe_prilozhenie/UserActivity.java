@@ -20,8 +20,8 @@ public class UserActivity extends AppCompatActivity {
     EditText orgBox; // Переменная для отображения текстового поля ???
     MultiAutoCompleteTextView opisanieBox; // Переменная для отображения текстового поля ???
     Button delButton; // Переменная для кнопки удаления
-    Button saveButton;  // Переменная для кнопки сохранения
-    public String email;  // Переменная для хранения логина
+    Button saveButton; // Переменная для кнопки сохранения
+    public String email; // Переменная для хранения логина
     public int userId; // Переменная для хранения пользовательского id
 
     DatabaseHelper_Users_Merop sqlHelper; // Объект для создания и управления базой данных SQLite
