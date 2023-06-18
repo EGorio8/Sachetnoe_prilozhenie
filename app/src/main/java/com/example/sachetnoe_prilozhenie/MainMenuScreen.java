@@ -6,7 +6,7 @@ import android.os.Build; import android.os.Bundle; import android.view.View; imp
 
 import androidx.annotation.RequiresApi; import androidx.appcompat.app.AppCompatActivity;
 
-public class Main_Menu extends AppCompatActivity {
+public class MainMenuScreen extends AppCompatActivity {
 
     TextView textEmail; // Переменная для отображения логина на экране
     Button ButtonControl; // Переменная для создания и управления кнопкой на экране
