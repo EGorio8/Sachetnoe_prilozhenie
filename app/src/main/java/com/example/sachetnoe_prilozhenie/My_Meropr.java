@@ -15,7 +15,7 @@ public class My_Meropr extends AppCompatActivity {
         setContentView(R.layout.my_meropr); // Устанавливаем макет пользовательского интерфейса "my_meropr" для этой активности
     }
    
-    public void onBackPressed(View view) {  // Создаём метод для обработки события нажатия кнопки возвращения на предыдущую активность
+    public void onBackPressed(View view) { // Создаём метод для обработки события нажатия кнопки возвращения на предыдущую активность
         super.onBackPressed(); // Возвращаемся к предыдущей активности
     }
 }
