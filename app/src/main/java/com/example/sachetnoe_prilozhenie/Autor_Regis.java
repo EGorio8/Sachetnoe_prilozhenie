@@ -17,7 +17,7 @@ public class Autor_Regis extends AppCompatActivity {
     private DatabaseHelper_Users_Merop dbHelper; // Создание переменной под БД
 
     // Создание активности страницы авторизации / регистрации пользователя
-    @Override
+    @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // Создание активности
         setContentView(R.layout.autor_regis); // Устанавливаем макет пользовательского интерфейса "autor_regis" для этой активности
