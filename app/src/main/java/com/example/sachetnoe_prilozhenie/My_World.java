@@ -63,19 +63,19 @@ public class My_World extends AppCompatActivity {
                     textStatus.setText("Статус: "+statusToReturn);
                     textPol.setText("Пол: "+polToReturn);
                     if(reatingToReturn<201){
-                        textReating.setText("Медь");
+                        textReating.setText("Медь: "+reatingToReturn);
                         ImageIcon.setImageResource(R.drawable.copper);
                     }else if(reatingToReturn<401 && reatingToReturn>200){
-                        textReating.setText("Бронза");
+                        textReating.setText("Бронза: "+reatingToReturn);
                         ImageIcon.setImageResource(R.drawable.bronze);
                     }else if(reatingToReturn<601 && reatingToReturn>400){
-                        textReating.setText("Серебро");
+                        textReating.setText("Серебро: "+reatingToReturn);
                         ImageIcon.setImageResource(R.drawable.silver_1);
                     }else if(reatingToReturn<801 && reatingToReturn>600){
-                        textReating.setText("Золото");
+                        textReating.setText("Золото: "+reatingToReturn);
                         ImageIcon.setImageResource(R.drawable.gold);
-                    }else if(reatingToReturn<1001 && reatingToReturn>800){
-                        textReating.setText("Бриллиант");
+                    }else if( reatingToReturn>800){
+                        textReating.setText("Бриллиант: "+reatingToReturn);
                         ImageIcon.setImageResource(R.drawable.diamond);
                     }
                 } else {

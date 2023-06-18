@@ -9,8 +9,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 public class Upravlat_Red extends AppCompatActivity {
 
     TextView textEmail;
+    private EditText Reating;
     private DatabaseHelper_Users_Merop dbHelper;
     public String fio_zav;
     public String fio_uch;
@@ -34,6 +37,8 @@ public class Upravlat_Red extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upravlat_red);
+
+        Reating= findViewById(R.id.EditReating);
 
         textEmail = findViewById(R.id.EmailText);
         textName = findViewById(R.id.Name);
@@ -171,7 +176,6 @@ public class Upravlat_Red extends AppCompatActivity {
     public void delete(View view) {
         dbHelper = new DatabaseHelper_Users_Merop(getApplicationContext());
         Cursor cursor = dbHelper.getData();
-
         while (cursor.moveToNext()) {
             Name = cursor.getString(cursor.getColumnIndex(DatabaseHelper_Users_Merop.COLUMN_NAME));
             if (Name != null) {
@@ -188,7 +192,48 @@ public class Upravlat_Red extends AppCompatActivity {
                 }
             }
         }
+        Intent intent1 = new Intent(this, Upravlat.class);
+        intent1.putExtra("email", textEmail.getText().toString());
+        intent1.putExtra("fio", fio);
+        intent1.putExtra("id", userId);
+        startActivity(intent1);
+    }
 
+    public void razdat(View view) {
+        DatabaseHelper_Users_Merop dbHelper = new DatabaseHelper_Users_Merop(this); Intent intent = getIntent();
+        _id_mer = intent.getIntExtra("_id_mer", -2);
+        if (Reating == null) { Toast.makeText(this, "Enter rating points", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        int points = Integer.parseInt(Reating.getText().toString());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String whereClause = DatabaseHelper_Users_Merop.COLUMN_ID + " IN (SELECT " + DatabaseHelper_Users_Merop.COLUMN_ID_USER_UCH + " FROM " + DatabaseHelper_Users_Merop.TABLE_UCHAV + " WHERE " + DatabaseHelper_Users_Merop.COLUMN_ID_MER_UCH + " = " + _id_mer + ")";
+        Cursor cursor = db.query(DatabaseHelper_Users_Merop.TABLE_U, null, whereClause, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do
+            {
+                int oldPoints = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper_Users_Merop.COLUMN_REATING));
+                int newPoints = oldPoints + points;
+                if(newPoints>1000){
+                    newPoints=1000;
+                }
+                ContentValues values = new ContentValues();
+                values.put(DatabaseHelper_Users_Merop.COLUMN_REATING, newPoints);
+                int userId = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper_Users_Merop.COLUMN_ID));
+                String[] whereArgs = {String.valueOf(userId)};
+                int count = db.update(DatabaseHelper_Users_Merop.TABLE_U, values, DatabaseHelper_Users_Merop.COLUMN_ID + "=?", whereArgs);
+                if (count <= 0) {
+                    Toast.makeText(this, "Ошибка распределения баллов для пользователя" + userId, Toast.LENGTH_SHORT).show();
+                }
+            }
+            while (cursor.moveToNext());
+            Toast.makeText(this, "Баллы распределены успешно", Toast.LENGTH_SHORT).show();
+        } else
+        {
+            Toast.makeText(this, "Пользователи не найдены", Toast.LENGTH_SHORT).show();
+        }
+        cursor.close();
+        dbHelper.close();
         Intent intent1 = new Intent(this, Upravlat.class);
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("fio", fio);

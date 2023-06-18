@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/EditReating"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:background="#283751"
@@ -179,10 +179,11 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/button25"
+                android:id="@+id/Razdat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="razdat"
                 android:text="Раздать баллы"
                 app:backgroundTint="#3E4A77"
                 app:iconTint="#FFFFFF"
