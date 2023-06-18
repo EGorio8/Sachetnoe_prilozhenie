@@ -121,6 +121,7 @@ public class My_World extends AppCompatActivity {
         Intent intent0 = new Intent(this, My_Meropr.class);
         intent0.putExtra("email", textEmail.getText().toString());
         intent0.putExtra("id", id); // передаем id в intent0
+        intent0.putExtra("fio", textFio.getText().toString());
         startActivity(intent0);
     }
 

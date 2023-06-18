@@ -126,10 +126,8 @@
 
     <Button
         android:id="@+id/button17"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="57dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif"
         android:onClick="go_to_my_merop"
@@ -140,6 +138,7 @@
         app:backgroundTint="#3E4A77"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
@@ -152,6 +151,7 @@
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        android:visibility="gone"
         app:backgroundTint="#3E4A77"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toStartOf="@+id/button17"

@@ -29,6 +29,7 @@ public class Upravlat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upravlat);
+
         textEmail = findViewById(R.id.EmailText);
 
         searchEditText = findViewById(R.id.searchEvent);
