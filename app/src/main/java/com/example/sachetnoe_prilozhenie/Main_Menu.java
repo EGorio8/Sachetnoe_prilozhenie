@@ -8,21 +8,21 @@ import androidx.annotation.RequiresApi; import androidx.appcompat.app.AppCompatA
 
 public class Main_Menu extends AppCompatActivity {
 
-    TextView textEmail;
-    Button ButtonControl;
-    ListView meropList;
-    DatabaseHelper_Users_Merop databaseHelper;
-    SQLiteDatabase db;
-    Cursor userCursor;
-    SimpleCursorAdapter userAdapter;
-    String status;
-    String fio;
-    public int userId;
+    TextView textEmail; // Переменная для отображения логина на экране
+    Button ButtonControl; // Переменная для создания и управления кнопкой на экране
+    ListView meropList; // Переменная для создания и управления списком на экране
+    DatabaseHelper_Users_Merop databaseHelper; // Переменная для работы с базой данных приложения
+    SQLiteDatabase db; // Переменная для работы с базой данных приложения
+    Cursor userCursor; // Переменная для получения данных из базы данных SQLite
+    SimpleCursorAdapter userAdapter; // Переменная для контроля данных, отображаемых в ListView
+    String status; // Переменная для хранения пользовательского статуса
+    String fio; // Переменная для хранения пользовательского ФИО
+    public int userId; // Переменная для хранения пользовательского id
 
-    // Создание активности страницы главного меню
+   
     @SuppressLint("MissingInflatedId") // Заглушка для предупреждения android-studio
     @Override // Переопределение родительского метода
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {  // Создание активности страницы главного меню
         super.onCreate(savedInstanceState); // Создание активности
         setContentView(R.layout.main_menu); // Устанавливаем макет пользовательского интерфейса "main_menu" для этой активности
 
@@ -113,35 +113,34 @@ public class Main_Menu extends AppCompatActivity {
         }
     }
 
-    // Создаём метод для кнопки "На главную"
+    // Создаём метод который вызывается при нажатии на кнопку "На главную"
     public void home(View view) {
         Intent intent1 = new Intent(this, My_World.class);
-        intent1.putExtra("email", textEmail.getText().toString());
-        intent1.putExtra("status", status);
-        intent1.putExtra("fio", fio);
-        intent1.putExtra("id", userId);
-        startActivity(intent1);
+        intent1.putExtra("email", textEmail.getText().toString()); // Добавляет в Intent значение из текстового поля логина под ключом "email"
+        intent1.putExtra("status", status); // Добавляет в Intent значение статуса под ключом "status"
+        intent1.putExtra("fio", fio); // Добавляет в Intent значение ФИО под ключом "fio"
+        intent1.putExtra("id", userId); // Добавляет в Intent значение пользователького идентификатора под ключом "id"
+        startActivity(intent1); // Запуск новой активности в окне главного меню
     }
 
-    // Создаём метод для кнопки "Управление"
+    // Создаём метод который вызывается при нажатии на кнопку "Управление"
     public void use(View view) {
         Intent intent1 = new Intent(this, Upravlat.class);
-        intent1.putExtra("email", textEmail.getText().toString());
-        intent1.putExtra("status", status);
-        intent1.putExtra("fio", fio);
-        intent1.putExtra("id", userId);
-        startActivity(intent1);
+        intent1.putExtra("email", textEmail.getText().toString());  // Добавляет в Intent значение из текстового поля логина под ключом "email"
+        intent1.putExtra("status", status);  // Добавляет в Intent значение статуса под ключом "status"
+        intent1.putExtra("fio", fio);  // Добавляет в Intent значение ФИО под ключом "fio"
+        intent1.putExtra("id", userId);  // Добавляет в Intent значение пользователького идентификатора под ключом "id"
+        startActivity(intent1); // Запуск новой активности в окне управления мероприятиями
     }
 
     @Override // Переопределение родительского метода
     public void onDestroy() {
-        super.onDestroy();
-        // Закрываем подключение и курсор
-        if (db != null) {
-            db.close();
+        super.onDestroy();  // Закрываем активности
+        if (db != null) { // Проверяем, существует ли объект "db", и, если существует, то
+            db.close(); // Закрываем его
         }
-        if (userCursor != null) {
-            userCursor.close();
+        if (userCursor != null) { // Проверяем, существует ли объект "userCursor", и, если существует, то
+            userCursor.close(); // Закрываем его
         }
     }
 }
