@@ -38,8 +38,8 @@ public class UserActivity extends AppCompatActivity {
         email = intent0.getStringExtra("email");  // Получаем значение логина
         userId = intent0.getIntExtra("id", -2); // извлекаем значение id из intent
 
-        nameBox = findViewById(R.id.name); // Связываем  переменную ??? с ???
-        vremaBox = findViewById(R.id.vrema); // Связываем  переменную ??? с ???
+        nameBox = findViewById(R.id.name); // Связываем  переменную переменную названия мероприятия с участком поля имени мероприятия
+        vremaBox = findViewById(R.id.vrema); // Связываем  переменную время мероприятия с участком поля мероприятия 
         orgBox = findViewById(R.id.org); // // Связываем  переменную данных о организаторе с с текстовым полем данных об организаторе
         opisanieBox = findViewById(R.id.opis); // Связываем  переменную текстового поля описания мероприятия с текстовым полем описания мероприятия
         delButton = findViewById(R.id.deleteButton); // Связываем  переменную кнопки удаления с кнопкой для удаления
