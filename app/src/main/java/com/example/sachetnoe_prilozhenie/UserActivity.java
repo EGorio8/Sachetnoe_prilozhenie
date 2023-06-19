@@ -15,10 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class UserActivity extends AppCompatActivity {
 
-    EditText nameBox; // Переменная для отображения текстового поля ???
-    EditText vremaBox; // Переменная для отображения текстового поля ???
-    EditText orgBox; // Переменная для отображения текстового поля ???
-    MultiAutoCompleteTextView opisanieBox; // Переменная для отображения текстового поля ???
+    EditText nameBox; // Переменная для отображения текстового поля названия мероприятия
+    EditText vremaBox; // Переменная для отображения текстового поля даты мероприятия
+    EditText orgBox; // Переменная для отображения текстового поля организатора мероприятия
+    MultiAutoCompleteTextView opisanieBox; // Переменная для отображения текстового поля описания мероприятия
     Button delButton; // Переменная для кнопки удаления
     Button saveButton; // Переменная для кнопки сохранения
     public String email; // Переменная для хранения логина
@@ -33,7 +33,7 @@ public class UserActivity extends AppCompatActivity {
     @Override // Переопределение родительского метода
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); // Создание активности
-        setContentView(R.layout.user_activity);  // Устанавливаем макет пользовательского интерфейса "user_activity" для этой активности
+        setContentView(R.layout.user_activity); // Устанавливаем макет пользовательского интерфейса "user_activity" для этой активности
         Intent intent0 = getIntent(); // Создаём объект для передачи данных между классами
         email = intent0.getStringExtra("email");  // Получаем значение логина
         userId = intent0.getIntExtra("id", -2); // извлекаем значение id из intent
