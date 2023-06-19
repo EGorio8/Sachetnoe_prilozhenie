@@ -200,12 +200,15 @@ public class Upravlat_Red extends AppCompatActivity {
     }
 
     public void razdat(View view) {
+        //создание экземпляра БД
         DatabaseHelper_Users_Merop dbHelper = new DatabaseHelper_Users_Merop(this); Intent intent = getIntent();
         _id_mer = intent.getIntExtra("_id_mer", -2);
-        if (Reating == null) { Toast.makeText(this, "Enter rating points", Toast.LENGTH_SHORT).show();
+        //проверка на введенное количество баллов
+        if (Reating == null) { Toast.makeText(this, "Введите количество баллов", Toast.LENGTH_SHORT).show();
             return;
         }
         int points = Integer.parseInt(Reating.getText().toString());
+        //открытие БД на запись
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String whereClause = DatabaseHelper_Users_Merop.COLUMN_ID + " IN (SELECT " + DatabaseHelper_Users_Merop.COLUMN_ID_USER_UCH + " FROM " + DatabaseHelper_Users_Merop.TABLE_UCHAV + " WHERE " + DatabaseHelper_Users_Merop.COLUMN_ID_MER_UCH + " = " + _id_mer + ")";
         Cursor cursor = db.query(DatabaseHelper_Users_Merop.TABLE_U, null, whereClause, null, null, null, null);
@@ -222,6 +225,7 @@ public class Upravlat_Red extends AppCompatActivity {
                 int userId = cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper_Users_Merop.COLUMN_ID));
                 String[] whereArgs = {String.valueOf(userId)};
                 int count = db.update(DatabaseHelper_Users_Merop.TABLE_U, values, DatabaseHelper_Users_Merop.COLUMN_ID + "=?", whereArgs);
+                //проверка на успешность выдачи баллов
                 if (count <= 0) {
                     Toast.makeText(this, "Ошибка распределения баллов для пользователя" + userId, Toast.LENGTH_SHORT).show();
                 }
@@ -234,6 +238,7 @@ public class Upravlat_Red extends AppCompatActivity {
         }
         cursor.close();
         dbHelper.close();
+        //запуск активности Upravlat
         Intent intent1 = new Intent(this, Upravlat.class);
         intent1.putExtra("email", textEmail.getText().toString());
         intent1.putExtra("fio", fio);
